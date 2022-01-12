@@ -37,9 +37,6 @@ markdown_extensions:
   - sane_lists
      
 plugins:
-  - exclude:
-      glob:
-        - "*.sh"
   - search
   - git-revision-date-localized:
       type: datetime
