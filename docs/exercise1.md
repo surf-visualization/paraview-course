@@ -16,9 +16,11 @@ The pipeline shown in the Pipeline browser in the upper-left corner of the ParaV
 
 ▶ Next we want to apply the changes to this pipeline (i.e. the actual loading of the data), by pressing __Apply__ in the __Properties__ tab, directly below the pipeline browser.
 
-!!! Note "Lazy update"
+!!! Info "Lazy pipeline update"
 
     Remember that every time that you make changes to the pipeline or a filter's parameters, you have to "Apply" to make the pipeline execute.
+    The reason for this is that a pipeline update can take quite some time, depending on the data size and operation. So you should be able to make
+    several changes first before triggering a pipeline update manually.
 
 ▶ Now we want to have a quick look at the data. By default, newly loaded items are made visible in the current view area on the right, and in the pipeline browser on the left you should see a small eye icon next to the __headsq_masked.vtk__ object. By toggling the eye you can toggle visibility, a useful feature to control what elements you want to see.
 

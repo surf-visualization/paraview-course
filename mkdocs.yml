@@ -5,7 +5,7 @@ theme:
   name: material
   custom_dir: theme_overrides
   features:
-    - navigation.tabs   
+    #- navigation.tabs   
     #- navigation.tabs.sticky        # Needs insiders edition
     - navigation.instant
   logo: images/surf-logo.svg
@@ -46,17 +46,11 @@ site_dir: site
 
 # Navigation structure, basically left-side menu
 nav:
-  - Overview:
-      index.md
-  - Preparation:
-    - preparation.md
-  - Exercise 1:
-    - exercise1.md
-  - Exercise 2:
-    - exercise2.md
-  - Exercise 3:
-    - exercise3.md
-  - Bonus exercise:
-    - bonus.md
+  - index.md
+  - preparation.md
+  - exercise1.md
+  - exercise2.md
+  - exercise3.md
+  - bonus.md
     
 copyright: Copyright &copy; 2018-2021 SURF

@@ -1,6 +1,6 @@
 ![](images/smrx.png){ width=600 }
 
-These are the course exercises for our introductory course of scientific visualization with ParaView.
+These is the hands-on part of our introductory course of scientific visualization with ParaView.
 
 ## Authors
 
@@ -12,4 +12,4 @@ Robert Belleman (University of Amsterdam)
 
 Whenever there is a step to perform in an exercise this will be marked with a ▶ character. For example:
 
-▶ Please perform this instruction
+    ▶ Please perform this instruction
