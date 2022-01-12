@@ -1,0 +1,62 @@
+site_name: Introduction to Scientific Visualization with ParaView
+site_url: https://surf-visualization.github.io/paraview-course
+
+theme:
+  name: material
+  custom_dir: theme_overrides
+  features:
+    - navigation.tabs   
+    #- navigation.tabs.sticky        # Needs insiders edition
+    - navigation.instant
+  logo: images/surf-logo.svg
+  favicon: images/favicon.png
+  
+extra_css:
+  - extra.css
+  
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/SURF_onderzoek
+
+markdown_extensions:
+  - admonition    
+  - codehilite
+  - tables  
+  - toc:
+      permalink: True
+      toc_depth : "1-3"
+  #- pymdownx.emoji:
+  #    emoji_index: !!python/name:materialx.emoji.twemoji
+  #    emoji_generator: !!python/name:materialx.emoji.to_svg  
+  - pymdownx.magiclink
+  # For image attributes
+  - attr_list
+  - markdown_captions       # https://pypi.org/project/markdown-captions/
+  - footnotes
+  - sane_lists
+     
+plugins:
+  - exclude:
+      glob:
+        - "*.sh"
+  - search
+  - git-revision-date-localized:
+      type: datetime
+  #- enumerate-headings
+  #- add-number             # Exception during site build
+
+# Input dir will be searched for *.md files
+docs_dir: docs
+
+# Output location for `mkdocs build`. Will remove complete dir on rebuild!
+site_dir: site
+
+# Navigation structure, basically left-side menu
+nav:
+  - Preparation:
+    - preparation.md
+  - Exercise 1:
+    - exercise1.md
+    
+copyright: Copyright &copy; 2018-2021 SURF
