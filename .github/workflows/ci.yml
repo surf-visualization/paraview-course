@@ -18,5 +18,6 @@ jobs:
             mkdocs-enumerate-headings-plugin \
             mkdocs-add-number-plugin \
             pymdown-extensions \
-            markdown-captions
+            markdown-captions \
+            mkdocs-git-revision-date-localized-plugin
       - run: mkdocs gh-deploy --force
