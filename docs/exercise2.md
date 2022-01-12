@@ -28,10 +28,10 @@ ParaView does not know how these individual variables relate to the points and c
 
 ▶ The first step is to add a __TableToPoints__ filter to our data source. This filter creates a 3D point for each row in the table, based on a set of table values you choose. You can find this filter under __Filters → Alphabetical → TableToPoints__. Set the __X__, __Y__ and __Z__ columns correctly to the table columns representation point position, check __Keep All Data Arrays__ and hit __Apply__.
 
-!!! Hint
+!!! Hint "Quick way to add a filter"
 
-    A quick way to add a filter whose name you know is to hit **Ctrl+Spacebar**. This will show a search dialog where you can type (part of) the filter name
-    and matching filters will get listed. Select the filter you want and press **Enter** to add it.
+    When you know the name of the filter you want to add, a quicker way than navigating the Filter menu is to hit **Ctrl+Spacebar**. This will show a search dialog where you can type (part of) the filter name and matching filters will get listed. Select the filter you want and press **Enter** to add it.
+    Of course, make sure to have selected the filter whose inputs you want to use before adding the downstream filter.
 
 ![](images/tabletopoints.png)
 
