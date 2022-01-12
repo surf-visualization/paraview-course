@@ -54,11 +54,17 @@ site_dir: site
 
 # Navigation structure, basically left-side menu
 nav:
+  - Overview:
+      index.md
   - Preparation:
     - preparation.md
   - Exercise 1:
     - exercise1.md
   - Exercise 2:
     - exercise2.md
+  - Exercise 3:
+    - exercise3.md
+  - Bonus exercise:
+    - bonus.md
     
 copyright: Copyright &copy; 2018-2021 SURF

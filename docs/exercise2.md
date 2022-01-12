@@ -8,7 +8,9 @@ The advantage of CSV is that it is a simple and human-readable format, and can b
 
 The data contained in the CSV file is not automatically identified and understood correctly by ParaView, it simply does not have enough information for that. Therefore when we open a CSV file, we first have to apply some filters to map the data to the correct data arrays that we can operate on. After this is done, we can use a stream-tracer filter on it to get a good impression of the wind flow in this simulation.
 
-▶ If you currently have any data loaded use the disconnect button/icon or __File → Disconnect__ to clean your current workspace.
+▶ The first thing to do is to create a new session, and start with a clean view. For this, use the disconnect button in the toolbar and pressing __Yes__ (or the __File → Disconnect__ menu option). This will completely clean your current pipeline, so you can start the next exercise:
+
+![](images/disconnect.png)
 
 ▶ Open the __wervel.csv__ file and click __Apply__. ParaView will ask which reader to use, pick __CSV Reader__ and click __Ok__. Next, use __Apply__ to actually load the data. A new view pane with a table representation of the data will get added next to existing the 3D view. The table is similar to an Excel sheet.
 
