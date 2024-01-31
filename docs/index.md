@@ -4,7 +4,7 @@ These is the hands-on part of our introductory course of scientific visualizatio
 
 ## Authors
 
-* Paul Melis, Casper van Leeuwen (SURF)
+* Paul Melis & Casper van Leeuwen (SURF)
 * Robert Belleman (University of Amsterdam)
 
 ## Conventions

@@ -1,6 +1,10 @@
 # Bonus Exercise - A stationary fluid mixer
 
-You should now have gained enough ParaView skills in order to re-create the visualization on the [Home](../) page of these course notes. The visualization shows a so-called static (or stationary) mixer. In such a mixer two fluids enter separated on one side and exit mixed on the other side. The basis for the visualization is the data file __SMRX.vtk__.
+You should now have gained enough ParaView skills in order to re-create the visualization on the [Home](index.md) page of these course notes:
+
+![](images/smrx.png){ width=600 }
+
+The visualization shows a so-called static (or stationary) mixer. In such a mixer two fluids enter separated on one side and exit mixed on the other side. The basis for the visualization is the data file __SMRX.vtk__.
 
 Good luck!
 
