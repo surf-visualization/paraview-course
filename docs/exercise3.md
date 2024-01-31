@@ -13,19 +13,15 @@ In this exercise, we are going to look at time-dependent data. The data we use f
 You should now see a contour surface of one single time point in the growth of the coral. However, what we want is to have the contour plot
 change dynamically over time, showing us the growth of the coral over time.
 
-▶ To achieve this, we need to open the __Animation View__, which can be enabled from the main menu with __View → Animation View__. In the animation toolbar, set __No. frames__ to __100__, the __End time__ to __10__. This will set up the animation to be 10 seconds long, playing a total of 100 frames, and thus
-10 frames per second.
+▶ To achieve this, we need to open the __Animation View__, which can be enabled from the main menu with __View → Animation View__. In the animation toolbar, set __No. Frames__ to __100__, the __End time__ to __10__. This will set up the animation to be 10 seconds long, playing a total of 100 frames, and thus 10 frames per second.
 
 ▶ Link the contour iso-surface value to the time sequence by using the blue __+__ button left of the __Contour1__ and __Isosurfaces__ dropdown menus.
 
 ![](images/animation.png)
 
-▶ Verify that this adds __Contour1__ to the timeline, directly under __TimeKeeper1__ as a second "strip" over the full length of the time bar. The values at
-the far left and right edges of the strip are the isosurfaces used at those time points. These values are based on the min/max values from the input dataset
-(which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__).
+▶ Verify that this adds __Contour1__ to the timeline, directly under __TimeKeeper1__ as a second "strip" over the full length of the time bar. The values at the far left and right edges of the strip are the isosurface values used at those time points. These values are based on the min/max values from the input dataset (which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__).
 
-▶ With the animation set up you can now use the playback buttons in the main toolbar to play through the growth of the simulation. The double arrow button
-controls if the playback loops back to the start.
+▶ With the animation set up you can now use the playback buttons in the main toolbar to play through the growth of the simulation. The double arrow button controls if the playback loops back to the start.
 
 ![](images/playback.png)
 
@@ -43,16 +39,24 @@ Since the coral is a three-dimensional structure, it is nice to look at all side
 
 Next, we will add a circular camera motion, a so-called _orbit_.
 
-▶ In the Animation View select __Camera__ in the dropdown next to the blue __+__ button, and __Orbit__ in the dropdown right to it. Then create a camera animation strip with the blue __+__ button. A dialog box will show up with parameters for the orbit, do not click Ok just yet.
+▶ In the Animation View select __Camera__ in the dropdown next to the blue __+__ button, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. If you play the animation you will see the scene rotates over time.
 
-▶ The default orbital parameters needs some tweaking, as they are based on the current view. The __Center__ value is the point around which the camera is rotated, __Normal__ is the vector used for the rotation and the __Origin__ is the initial camera position. Set the __Normal__ value to be -Y up __(0, -1, 0)__, or else we will get some weird rotation during the orbit. Normally, you will need to experiment in your own scenes to figure out correct values, but use the ones given below here and press __Ok__.
+The default camera orbit might need some tweaking, as it is set up based on the current view. For example, the camera might be a bit too close to the coral object and we want to move it back a bit. 
+
+▶ Bring up the animation parameters by double-clicking on the Camera strip in the Animation View, this will show the __Animation Keyframes__ dialog.
+
+![](images/animation-keyframes.png)
+
+There are currently on two key frames defined, for time 0 and time 10. We will change the values for time 0 to tweak the camera animation.
+
+▶ Select the row for time 0 in the dialog and click __Create Orbit__. This will show the Create Orbit dialog. The __Center__ value is the point around which the camera is rotated, __Normal__ is the vector used for the rotation and the __Origin__ is the initial camera position. Set the __Normal__ value to be -Y up __(0, -1, 0)__, or else the might be some weird rotation during the orbit. Normally, you will need to experiment in your own scenes to figure out correct values, but use the ones given below here and press __Ok__.
 
 ![](images/orbitparameters.png)
 
-▶ Play back the animation again and observe a nice rotation of the data as the coral grows.
+▶ Press __Ok__ in the Animation Keyframes dialog to apply the new values. Play back the animation again and observe a nice rotation of the data as the coral grows.
 
-▶ You can try experimenting with some different orbit parameters, to get visually different animations. Unfortunately, you cannot easily edit the current orbit parameters, so it's best to delete the current Camera strip from the animation view and create a new one with different parameters.
+▶ You can try experimenting with some different orbit parameters, to get visually different animations.
 
-!!! Tip 
+!!! Tip "Saving the animation to a video"
 
     Although not part of this exercise, it is really easy at this point to save the animated view to a movie file from ParaView. Use **File → Save Animation** for this. You can either save to a sequence of images, or directly to a video file.

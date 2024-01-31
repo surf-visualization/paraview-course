@@ -8,10 +8,11 @@ All course materials, data files and ParaView binaries can be found at https://e
 
 ## Install ParaView
 
-In this course we are going to use ParaView. ParaView is an open-source, multi-platform scientific visualization and data analysis application. It is available for 
-Windows, MacOS X and Linux. We provide ParaView binaries for this course in the course materials share (see above).
+In this course we are going to use ParaView. ParaView is an open-source, multi-platform scientific visualization and data analysis application. It is available for Windows, macOS and Linux. 
 
-This guide has been written for ParaView version **5.10**. Between ParaView versions small differences in GUI (and functionality) exist, but most of what is written in these notes should be easy to apply to other versions of ParaView. 
+We provide ParaView binaries *for Windows and Linux* for this course in the course materials share (see above). For macOS there are many variations available on https://www.paraview.org/download/.
+
+This guide has been written for ParaView version **5.11**. Between ParaView versions small differences in GUI (and functionality) exist, but most of what is written in these notes should be easy to apply to other versions of ParaView. 
 
 !!! Warning "OpenGL compatibility"
 

@@ -36,6 +36,8 @@ Right now, your data is visible only as an outline: a box made from a few white 
 
 !!! Info "Volume representation 'Are you sure?'"
 
+    ![](images/volume-warning.png)
+
     When enabling Volume representation a dialog box may pop up asking if you are sure. For large datasets volume rendering can be problematic
     if your system doesn't have a lot of memory and/or has a slow GPU. For the datasets used here volume rendering on most systems should not be a problem.
 
@@ -54,6 +56,11 @@ Our next job is to see what this dataset contains. To be more precise, we want t
 ▶ To do this, we first need to add a __Contour__ filter to the pipeline: select the data source (__headsq_masked.vtk__) in the pipeline browser and add a Contour filter. You can do this by either using the icon symbol in the toolbar (half a sphere) or use __Filters → Common → Contour__ in the menu bar:
 
 ![](images/contour-filter.png)
+
+!!! Tip "Quick way to add a filter"
+
+    When you know the name of the filter you want to add, a quicker way than navigating the Filter menu is to use **Ctrl+Spacebar**. This will show a search dialog where you can type (part of) the filter name and matching filters will get listed. Select the filter you want and press **Enter** to add it.
+    Of course, make sure to have selected the filter whose inputs you want to use before adding the downstream filter.
 
 ▶ Next, we want to see what this filter does: in the __Properties__ tab, set the value of the contour under __Isosurfaces__ to 500 and click on __Apply__ and you should see a surface more-or-less representing the boy's skin.
 
