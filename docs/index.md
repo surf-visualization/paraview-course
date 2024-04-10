@@ -1,6 +1,11 @@
+---
+hide:
+    - navigation
+---
+
 ![](images/smrx.png){ width=600 }
 
-These is the hands-on part of our introductory course of scientific visualization with ParaView.
+This is the hands-on part of our introductory course of scientific visualization with ParaView.
 
 ## Authors
 

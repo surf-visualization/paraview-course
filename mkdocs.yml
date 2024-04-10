@@ -5,9 +5,11 @@ theme:
   name: material
   custom_dir: theme_overrides
   features:
-    #- navigation.tabs   
-    #- navigation.tabs.sticky        # Needs insiders edition
+    - navigation.tabs   
+    - navigation.tabs.sticky
     - navigation.instant
+    - navigation.top
+    - navigation.footer    
   logo: images/surf-logo.svg
   favicon: images/favicon.png
   
@@ -17,7 +19,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/SURF_onderzoek
+      link: https://twitter.com/SURF__en
 
 markdown_extensions:
   - admonition    
@@ -48,10 +50,11 @@ site_dir: site
 nav:
   - index.md
   - preparation.md
-  - exercise1.md
-  - exercise2.md
-  - exercise3.md
-  - bonus.md
-  - privacy.md
+  - Exercises:
+    - exercise1.md
+    - exercise2.md
+    - exercise3.md
+    - bonus.md
+  #- privacy.md
     
 copyright: Copyright &copy; 2018-2024 SURF

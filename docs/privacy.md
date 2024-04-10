@@ -1,4 +1,9 @@
-# Privacy and cookie statement
+---
+hide:
+    - navigation
+---
+
+# Privacy and cookies
 
 ## Privacy
 
