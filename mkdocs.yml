@@ -28,8 +28,13 @@ markdown_extensions:
   - toc:
       permalink: True
       toc_depth : "1-3"
-  - pymdownx.magiclink
-  # For image attributes
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences  # For image attributes
   - attr_list
   - markdown_captions       # https://pypi.org/project/markdown-captions/
   - footnotes
@@ -55,8 +60,8 @@ nav:
     - exercise2.md
     - exercise3.md
     - bonus.md
-  - scripting.md
-  #- privacy.md
+  - scripting.md  
   - further-information.md
+  #- privacy.md
     
 copyright: Copyright &copy; 2018-2024 SURF

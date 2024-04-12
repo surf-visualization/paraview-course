@@ -15,6 +15,35 @@ can have multiple layouts in UI
 line chart view, with Plot Data filter, can even do scatter plots
 
 
+paraview state file
+ALT...vtk file (coral growth)
+
+Load file, isosurface
+Save State to .pvsm file
+clear scene, load pvsm
+
+Second option: save state to .py file
+Clear scene, load .py file
+
+More flexible way: make trace
+Start trace
+Load file, contour, clip, save screenshot (don't embed state)
+Show .py file
+Note commented lines at the bottom of the script
+
+Again, clear scene, load state from .py file
+Notice head.png got written
+
+Once more trace pipeline, this time save screenshot AND embed state
+Load screenshot PNG file (identify -verbose head.png)
+
+Command-line: pvpython, pvbatch
+
+
+ 
+
+
+
 vtkm filters
 https://www.kitware.com/vtk-m-accelerated-filters-in-vtk-and-paraview/
 no speedup? but massive slowdown?
@@ -78,3 +107,17 @@ Stack traces in the output window are not indented correctly
 
 Can only have a single PythonView?
 https://discourse.paraview.org/t/what-to-pass-as-view-for-python-view-call-render-function/9784/3
+
+
+
+
+
+course chapters
+- exercises
+- explanatory
+- reference material
+
+slides
+- explanatory
+
+scripts for walkthroughs

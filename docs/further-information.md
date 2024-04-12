@@ -7,14 +7,14 @@ hide:
 
 ## Official resources
 
-The official [ParaView User Guide](https://docs.paraview.org/en/latest/UsersGuide/index.html) is quite good and contain lots of detailed information on data analysis and visualization with ParaView. The [ParaView Reference Manual](https://docs.paraview.org/en/latest/ReferenceManual/index.html) has more information on UI components and Python scripting.
+The official [ParaView User Guide](https://docs.paraview.org/en/latest/UsersGuide/index.html) is quite good and contain lots of detailed information on data analysis and visualization with ParaView. The section in the User Guide on the ParaView [data model](https://docs.paraview.org/en/latest/UsersGuide/understandingData.html#vtk-data-model) can be especially relevant to understand how filters operate, and how to represent different types of datasets within this model.
 
-The section on the ParaView [data model](https://docs.paraview.org/en/latest/UsersGuide/understandingData.html#vtk-data-model) can be especially relevant to understand how filters operate, and how to represent different types of datasets within this model.
+The [ParaView Reference Manual](https://docs.paraview.org/en/latest/ReferenceManual/index.html) has more information on UI components and Python scripting.
 
 There's also a whole set of official [tutorials](https://docs.paraview.org/en/latest/Tutorials/index.html), from basic UI elements and tasks,
 to more advanced data analysis, animations, Python scripting and much more.
 
-For asking questions, and as a knowledge-base, there is the ParaView [Discourse forum](https://discourse.paraview.org). Many ParaView developers are active on the forum, helping users with questions or problems.
+For asking questions, as well as a knowledge-base to search, there is the ParaView [Discourse forum](https://discourse.paraview.org). Many ParaView developers are active on the forum, helping users with questions or problems.
 
 ## Interface guide
 
@@ -22,9 +22,11 @@ For asking questions, and as a knowledge-base, there is the ParaView [Discourse 
 
 ### Common view types
 
-The type of the main view can be changed, or even split into multiple views of the same or different types.
+The type of the main view area can be changed, or even split into multiple view areas of the same or different types. The buttons marked *View area controls* above allow these changes. When adding a view area, or changing the main area, a menu is shown with the different types of views that can be created:
 
-XXX type list
+![](./images/view-area-menu.png){: width=500px }
+
+Below, we describe a few of these.
 
 * The **Render View** is the default and most used one. It provides an interactive 3D view where output of filters is shown. Per filter a visual representation can be chosen, as well as visibility per filter.
 
@@ -38,7 +40,7 @@ XXX type list
 
     ![](./images/histogram.png){: width=500px }
 
-* Something similar happens with filters producing line charts. For example, the Plot Over Line filter adds a **Line Chart View**.
+* Something similar is done for filters producing line charts. For example, the Plot Over Line filter adds a **Line Chart View**.
 
     ![](./images/plot-over-line.png){: width=500px }
 
@@ -63,6 +65,6 @@ With **`Ctrl+Space`** you can bring up the filter quick search menu:
 
 ![](./images/filter-search.png)
 
-By typing the first few letters of a filter name, `cont` in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate the filter is not compatible with the currently selected filter's output data type.
+By typing the first few letters of a filter name, "cont" in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that that particular filter is not compatible with the currently selected filter's output data type.
 
 
