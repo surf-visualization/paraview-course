@@ -1,3 +1,59 @@
+9:00 – 9:10 * Introduction (10 min)
+9:10 – 9:40 * Scientific visualization overview (30 min)
+9:40 – 10:00 * Introduction to ParaView (20 min)
+10:00 – 10:15 * Live ParaView demo of different functionality (15 min)
+10:15 – 11:45 * Hands-on with ParaView + break (90 min)
+11:45 – 12:00 Improving visuals (15 min) shading, ospray, index plugin
+12:00 – 12:20 ~ Handling large datasets (20 min) + vtkm plugin
+12:20 – 12:40 Python scripting (20 min)
+12:40 – 13:00 * Q&A and closing (20 min)
+
+
+
+can have multiple layouts in UI
+
+line chart view, with Plot Data filter, can even do scatter plots
+
+
+vtkm filters
+https://www.kitware.com/vtk-m-accelerated-filters-in-vtk-and-paraview/
+no speedup? but massive slowdown?
+
+streamlinesrepresentation
+https://www.kitware.com/new-animated-stream-lines-representation-for-paraview-5-3/
+https://discourse.paraview.org/t/streamline-representation-not-working/9222
+need to recreate renderview after loading plugin, to get streamlines repr in list
+wervel state, select delaunay3d, switch to streamlines repr. can tweak streamlines params
+
+
+pvNVIDIAIndeX (https://www.nvidia.com/en-us/data-center/index-paraview-plugin/), is stil being developed?
+asks to agree to EULA when loaded in paraview. non-commercial use only!
+since 5.12 comes with a test license for multi-GPU use, which experires after some time
+CUDA12 since 5.12, needs CUDA CC 5.0 or higher
+recreate view (or add layout), then pick NVIDIA IndeX representation
+lighting tweaks, isosurface, slice
+
+ospray
+
+
+node editor plugin, verbosity option
+
+
+
+mention blender courses
+
+
+https://www.paraview.org/Wiki/ParaView_Release_Notes
+
+5.8  18-02-2020
+5.9  28-01-2021
+5.10 04-01-2022
+5.11 17-11-2022
+5.12 04-03-2024
+
+
+
+
 https://www.kitware.com//matplotlib-view-coming-in-paraview-4-1/
 https://www.kitware.com/paraview-python-view-is-now-more-versatile/
 new func signature, should return vtkImageData
