@@ -19,12 +19,12 @@ The pipeline shown in the Pipeline browser in the upper-left corner of the ParaV
 !!! Info "Lazy pipeline update"
 
     Remember that every time that you make changes to the pipeline or a filter's parameters, you have to "Apply" to make the pipeline execute.
-    The reason for this is that a pipeline update can take quite some time, depending on the data size and operation. So you should be able to make
-    several changes first before triggering a pipeline update manually.
+    
+    The reason for this is that a pipeline update can take quite some time, depending on the data size and operation. The manual apply allows you to make several changes to the filter first before triggering a pipeline update.
 
-▶ Now we want to have a quick look at the data. By default, newly loaded items are made visible in the current view area on the right, and in the pipeline browser on the left you should see a small eye icon next to the __headsq_masked.vtk__ object. By toggling the eye you can toggle visibility, a useful feature to control what elements you want to see.
+▶ Now we want to have a quick look at the data. By default, newly loaded items are made visible in the current view area on the right, and in the pipeline browser on the left you should see a small eye icon 👁 next to the __headsq_masked.vtk__ object. By toggling the eye you can toggle visibility, a useful feature to control what elements you want to see.
 
-▶ Another handy thing to check is the metadata in the __Information__ tab, directly below the pipeline browser. It shows you the type of the dataset, the number of points and cells, data ranges, spatial extent, etc.
+▶ Another handy thing to check is the metadata in the __Information__ tab, directly below the pipeline browser. It shows you the type of the dataset, the number of points and cells, data ranges, spatial extent, data memory size, etc.
 
 ▶ Try to get a bit of a feel for the mouse interaction in the 3D view (LMB = rotate, MMB = drag, RMB = zoom).
 

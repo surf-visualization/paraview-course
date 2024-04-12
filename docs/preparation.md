@@ -32,7 +32,7 @@ This guide has been written for ParaView version **5.12**. Between ParaView vers
 
 ## Download and extract data
 
-The ZIP files with data used in this workshop can be found in the course materials share linked above.
+The ZIP files with data used in this workshop can be found in the course materials share linked above. Some of the data sets are provided by the University of Amsterdam.
 
 ▶ Unzip the data file to a directory of your choice. 
 

@@ -1,0 +1,24 @@
+https://www.kitware.com//matplotlib-view-coming-in-paraview-4-1/
+https://www.kitware.com/paraview-python-view-is-now-more-versatile/
+new func signature, should return vtkImageData
+python_view support for matplotlib
+
+pressing window button in Script area brings up Script Editor in "linked" mode: edits
+in the editor will also appear in the Script area
+
+Script > Load script into current tab
+
+Fix output messages window in place, instead of as a popup
+Any way to force python view to replot?
+
+Errors also go to console window (Linux)
+
+Python 3.10
+
+Easy to crash, doesn't correctly update parsed Python code?
+No undo in Script area!
+Indenting doesn't always work in Script Editor
+Stack traces in the output window are not indented correctly
+
+Can only have a single PythonView?
+https://discourse.paraview.org/t/what-to-pass-as-view-for-python-view-call-render-function/9784/3
