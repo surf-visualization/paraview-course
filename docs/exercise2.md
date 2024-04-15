@@ -12,7 +12,9 @@ The data contained in the CSV file is not automatically identified and understoo
 
 ![](images/disconnect.png)
 
-▶ Open the __wervel.csv__ file and click __Apply__. ParaView will ask which reader to use, pick __CSV Reader__ and click __Ok__. Next, use __Apply__ to actually load the data. A new view pane with a table representation of the data will get added next to existing the 3D view. The table is similar to an Excel sheet.
+▶ Open the __wervel.csv__ file and click __Apply__. ParaView will ask which reader to use, pick __CSV Reader__ and click __Ok__. Next, use __Apply__ to actually load the data. A new view pane with a table representation of the data will get added next to existing the 3D view. The table is similar to an Excel sheet:
+
+![](images/tornado-spreadsheet-view.png)
 
 If you would open the CSV file in a text editor you would see the file contains 7 values per line, with each line representing one grid point. 
 
@@ -56,11 +58,11 @@ Next, we need to combine the three separate scalar values __vx__, __vy__ and __v
 
 You will probably have understood the name __iHat__ to represent the vector __î__, i.e. (1, 0, 0). Using the Calculator filter fairly complex expressions can be used to augment existing datasets with new and useful values, both scalars and vectors.
 
-▶ Select the Calculator filter in the pipeline and add another Calculator filter, for creating an array __VelocityMag__ and expression `mag(Velocity)`.
+▶ Select the Calculator filter in the pipeline and add *another* Calculator filter, for creating an array __VelocityMag__ and expression `mag(Velocity)`.
 
 ![](images/2ndcalculator.png)
 
-▶ The pipeline we built up to this point (shown above) creates a Polygonal Mesh dataset which contains only points: the input point positions with their respective 3D velocity vectors. You can see this on the __Information__ tab of the Calculator filter in the pipeline browser. Note that there's only 1 cell, and it contains all the 25,000 points. We also added two quantities derived from the input data, a velocity vector and its magnitude.
+▶ The pipeline we built up to this point, shown above, creates a Polygonal Mesh dataset which contains only points: the input point positions with their respective 3D velocity vectors. You can see this on the __Information__ tab of the Calculator filter in the pipeline browser. Note that there's only 1 cell, and it contains all the 25,000 points. We also added two quantities derived from the input data, a velocity vector and its magnitude.
 
 ## Visualizing the flow field
 
@@ -90,9 +92,9 @@ Now lets do some initial particle tracing through the flow field using the strea
 
 ![](images/streamtracerparams.png)
 
-This will give you a set of lines, each representing a trace of a particles as it follows the flow in the tornado. 
+This will give you a set of lines, each representing a trace of a particle as it follows the flow in the tornado. 
 
-▶ Note the small white 3D axis and large sphere at the bottom of the tornado: this is the seed point (12,12,0) plus given radius around which the traced particles start. You could experiment with different locations of the seed point to see how this influences the streamlines.
+▶ Note the small white 3D axis and large sphere at the bottom of the tornado: this is the seed center (12,12,0) and given radius around which the traced particles start. You could experiment with different locations of the seed point to see how this influences the streamlines.
 
 !!! Hint "Accidental sphere changes / Resetting a filter to last executed values"
 
@@ -104,32 +106,36 @@ This will give you a set of lines, each representing a trace of a particles as i
 ▶ To make the streamlines more visually appealing, we add another filter on the output of the StreamTracer filter, namely a __Tube__ filter (__Filters → Alphabetical → Tube__). In the Tube filter's __Properties__ tab, set the radius of the tubes to 0.1 and click __Apply__. Notice how this changes the appearance
 of the streamlines.
 
-▶ If you like, at this point you can experiment with different colorings of the tubes, based on e.g. velocity, angular velocity or rotation. Use the coloring controls under __Coloring__ for this.
+▶ At this point, we'd like to add the original data domain as an outline. For this, enable visibility of the __TableToPoints__ filter and switch its representation to __Outline__.
+
+▶ You can experiment with different colorings of the tubes, based on e.g. velocity, angular velocity or rotation. Use the coloring controls under __Coloring__ for this.
 
 ## Glyphs
 
-Finally, we'll add a different representation instead of the streamlines, called _glyphs_. Glyphs are usually small and simple 3D objects, like arrows or spheres, that get placed at each point position in a dataset to show a particular value. The glyphs are then colored, scaled and/or oriented based on scalar or vector values at that position. We'll use arrow glyphs to show the flow velocity magnitude and direction in the tornado.
+Finally, we'll add a different representation instead of the streamlines, called _glyphs_. Glyphs are simple and (usually) small 3D objects, like arrows or spheres. These glyphs get placed at each point position in a dataset to show a particular value. The glyphs are then colored, scaled and/or oriented based on scalar or vector values at the location. We'll use arrow glyphs to show the flow velocity magnitude and direction in the tornado.
 
-▶ Hide all filter output by clicking the relevant eye icons. 
+▶ Hide all filter output, except the __TableToPoints__ filter (the domain), by clicking the relevant eye icons. 
 
 ▶ Select the __Calculator2__ filter and add a __Glyph__ filter (__Filters → Common → Glyph__). Set the __Glyph Type__ to __Arrow__, set the __Orientation Array__ to __Velocity__ (i.e. our computed velocity vectors) and __Scale Mode__ to __No scale array__. Click __Apply__. 
 
+![](images/glypsettings.png)
+
 !!! Info "Point versus cell input"
 
-    Note that there is no need to base the Glyph filter on the Delaunay 3D output, as the Glyph filter works on 3D *points*, as in the original data set. This is unlike the Streamtracer filter needing cells, which we added using the Delaunay 3D filter.
+    Note that there is no need to base the Glyph filter on the Delaunay 3D output, as the Glyph filter works on 3D *points*, as in the original data set. This is unlike the Streamtracer filter needing *cells*, which we added using the Delaunay 3D filter.
 
     ParaView does provide generic `Point Data to Cell Data` and `Cell Data to Point Data` filters, to convert between the two using interpolation.
 
-![](images/glypsettings.png)
-
 You should now see a large number of arrows nicely distributed over the tornado dataset, indicating the direction of wind flow. As we have set the Scale Mode to Off all arrows are the same size, obscuring the insides and giving less of a visual clue to wind speed.
+
+Let's try to improve the overall visualization, to make it easier to interpret.
 
 ▶ Set the __Scale Array__ to __Velocity__ and the __Scale Factor__ to __0.2__ and press __Apply__. 
 
 ▶ Make sure the coloring is set to __VelocityMag__ and verify that the size and colors of a glyph arrow corresponds to its velocity value.
 
-You might wonder about the the number of glyphs placed, compared to the 25,000 points in the dataset. There is quite a large number of glyphs, and perhaps still too many to be effective. This doesn't help in the overall visual interpretation of the data, but we do need to balance getting enough coverage of the full dataset.
+You might wonder about the the number of glyphs placed, compared to the 25,000 points in the dataset. There is currently quite a large number of glyphs, and perhaps still too many to be effective. This doesn't help in the overall visual interpretation of the data, but we do need to balance getting enough coverage of the full dataset.
 
-▶ The settings under __Masking__ control the number and distribution of the glyphs placed. See what happens to the resulting visualization when you show a glyph for every 10th point, or 500 glyphs uniformly distributed (and why that means you need choose these kinds of parameters with care).
+▶ The settings under __Masking__ control the number and distribution of the glyphs placed. See what happens to the resulting visualization when you show a glyph for every 10th or 11th point, or 500 glyphs uniformly distributed (and why that means you need choose these kinds of parameters with care).
 
-▶ A useful variant is to apply glyphs *to the output of the Stream Trace filter* (by creating a second Stream Trace filter). This is possible because the generated streamlines are themselves polygonal data, where each streamline consists of a Poly-Line cell that uses a set of 3D points. As a Glyph filter uses point positions to place glyphs we can add Glyphs to streamlines. Experiment with this, using different types of glyphs, like Sphere and Arrow. Also try coloring by IntegrationTime to verify the direction in which the streamlines where "grown".
+▶ A useful variant is to apply glyphs *to the output of the Stream Trace filter* (by creating a second Glyph filter). This is possible because the generated streamlines are themselves polygonal data, where each streamline consists of a Poly-Line cell that uses a set of 3D points. As a Glyph filter uses point positions to place glyphs we can place them for each streamline. Experiment with this, using different types of glyphs, like Sphere and Arrow. Also try coloring by IntegrationTime to verify the direction in which the streamlines where "grown".

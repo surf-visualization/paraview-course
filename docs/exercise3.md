@@ -13,15 +13,15 @@ In this exercise, we are going to look at time-dependent data. The data we use f
 You should now see a contour surface of one single time point in the growth of the coral. However, what we want is to have the contour plot
 change dynamically over time, showing us the growth of the coral over time.
 
-▶ To achieve this, we need to open the __Animation View__, which can be enabled from the main menu with __View → Animation View__. In the animation toolbar, set __No. Frames__ to __100__, the __End time__ to __10__. This will set up the animation to be 10 seconds long, playing a total of 100 frames, and thus 10 frames per second.
+▶ To achieve this, we need to open the _Time Manager_, which can be enabled from the main menu with __View → Time Manager__. In the time manager toolbar, set __Number of frames__ to __100__. 
 
-▶ Link the contour iso-surface value to the time sequence by using the blue __+__ button left of the __Contour1__ and __Isosurfaces__ dropdown menus.
+▶ Link the contour iso-surface value to the time sequence by using the blue __+__ button right of the __Contour1__ and __Isosurfaces__ dropdown menus.
 
 ![](images/animation.png)
 
-▶ Verify that this adds __Contour1__ to the timeline, directly under __TimeKeeper1__ as a second "strip" over the full length of the time bar. The values at the far left and right edges of the strip are the isosurface values used at those time points. These values are based on the min/max values from the input dataset (which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__).
+▶ Verify that this adds __Contour1__ to the timeline, directly under __Animations__ as a second "strip" over the full length of the time bar. The values at the far left and right edges of the strip are the isosurface values used at those time points (1280 and 37120, respectively). These values are based on the min/max values from the input dataset, which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__.
 
-▶ With the animation set up you can now use the playback buttons in the main toolbar to play through the growth of the simulation. The double arrow button controls if the playback loops back to the start.
+▶ With the animation set up you can now use the playback buttons, either in the Time Manager or in the main toolbar, to play through the growth of the simulation. The double arrow button controls if the playback loops back to the start. When the animation is paused you can change the current time by clicking or dragging in the Time Sources bar.
 
 ![](images/playback.png)
 
@@ -39,17 +39,17 @@ Since the coral is a three-dimensional structure, it is nice to look at all side
 
 Next, we will add a circular camera motion, a so-called _orbit_.
 
-▶ In the Animation View select __Camera__ in the dropdown next to the blue __+__ button, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. If you play the animation you will see the scene rotates over time.
+▶ In the Time Manager select __Camera__ in the Animations row, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. This will add a __Camera - RenderView1__ strip. If you play the animation you will see the scene rotates over time, however, *the data is shown upside down...*
 
-The default camera orbit might need some tweaking, as it is set up based on the current view. For example, the camera might be a bit too close to the coral object and we want to move it back a bit. 
+So the default camera orbit needs some tweaking, as it is set up based on the current view. For example, the camera might be a bit too close to the coral object and we want to move it back a bit. 
 
-▶ Bring up the animation parameters by double-clicking on the Camera strip in the Animation View, this will show the __Animation Keyframes__ dialog.
+▶ Bring up the animation parameters by double-clicking on the Camera strip in the Time Manager, this will show the __Animation Keyframes__ dialog.
 
 ![](images/animation-keyframes.png)
 
-There are currently on two key frames defined, for time 0 and time 10. We will change the values for time 0 to tweak the camera animation.
+There are currently only two key frames defined, for time 0 and time 1. We will change the values for time 0 to tweak the camera animation.
 
-▶ Select the row for time 0 in the dialog and click __Create Orbit__. This will show the Create Orbit dialog. The __Center__ value is the point around which the camera is rotated, __Normal__ is the vector used for the rotation and the __Origin__ is the initial camera position. Set the __Normal__ value to be -Y up __(0, -1, 0)__, or else the might be some weird rotation during the orbit. Normally, you will need to experiment in your own scenes to figure out correct values, but use the ones given below here and press __Ok__.
+▶ Select the row for time 0 in the dialog and click __Create Orbit__. This will show the Create Orbit dialog. The __Center__ value is the point around which the camera is rotated, __Normal__ is the vector used for the rotation and the __Origin__ is the initial camera position. Set the __Normal__ value to be -Y up __(0, -1, 0)__, or else the might be some weird rotation during the orbit. Normally, you will need to experiment in your own scenes to figure out correct values, **but use the ones given below** and press __Ok__.
 
 ![](images/orbitparameters.png)
 
@@ -59,4 +59,4 @@ There are currently on two key frames defined, for time 0 and time 10. We will c
 
 !!! Tip "Saving the animation to a video"
 
-    Although not part of this exercise, it is really easy at this point to save the animated view to a movie file from ParaView. Use **File → Save Animation** for this. You can either save to a sequence of images, or directly to a video file.
+    Although not part of this exercise, it is really easy at this point to save the animated view to a movie file from ParaView. Use **File → Save Animation** for this. You can either save to a sequence of images, or directly to a video file, such as a .avi or .ogv. In this case it's best to set the __Frame Rate__ value to something like 20 (leading to a 5 second animation, as we have 100 frames).

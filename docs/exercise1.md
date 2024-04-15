@@ -26,7 +26,7 @@ The pipeline shown in the Pipeline browser in the upper-left corner of the ParaV
 
 ▶ Another handy thing to check is the metadata in the __Information__ tab, directly below the pipeline browser. It shows you the type of the dataset, the number of points and cells, data ranges, spatial extent, data memory size, etc.
 
-▶ Try to get a bit of a feel for the mouse interaction in the 3D view (LMB = rotate, MMB = drag, RMB = zoom).
+▶ Try to get a bit of a feel for the mouse interaction in the 3D view (LMB = rotate, MMB = drag, RMB or wheel = zoom).
 
 Right now, your data is visible only as an outline: a box made from a few white lines representing the spatial extent of your data. This does not give us much insight in the data, so we want to switch to something more suitable for the moment. 
 
@@ -38,8 +38,7 @@ Right now, your data is visible only as an outline: a box made from a few white 
 
     ![](images/volume-warning.png)
 
-    When enabling Volume representation a dialog box may pop up asking if you are sure. For large datasets volume rendering can be problematic
-    if your system doesn't have a lot of memory and/or has a slow GPU. For the datasets used here volume rendering on most systems should not be a problem.
+    When enabling Volume representation for the first time in a session, a dialog box may pop up asking if you are sure, which you can answer with Yes. For large datasets volume rendering can be problematic if your system doesn't have a lot of memory and/or has a slow GPU. For the datasets used here volume rendering on most systems should not be a problem.
 
 Especially in Volume representation you can clearly see that indeed we are looking at the scan of a (boy's) head. 
 
@@ -49,18 +48,21 @@ Especially in Volume representation you can clearly see that indeed we are looki
 
 You should now see a color scale in the view area that shows how scalar values in the data are mapped to colors. 
 
+▶Vary the slice position and orientation within the dataset using the Slicing properties (__Slice Direction__ and __Slice__).
+
 ## Isosurfacing
 
-Our next job is to see what this dataset contains. To be more precise, we want to explore certain features of the dataset in order to look for things out of the ordinary. For example, we are interested in physical structures such as bone and skin.
+Our next job is to look into what this dataset contains. To be more precise, we want to explore certain features of the dataset in order to look for things out of the ordinary. For example, we are interested in physical structures such as bone and skin.
 
 ▶ To do this, we first need to add a __Contour__ filter to the pipeline: select the data source (__headsq_masked.vtk__) in the pipeline browser and add a Contour filter. You can do this by either using the icon symbol in the toolbar (half a sphere) or use __Filters → Common → Contour__ in the menu bar:
 
 ![](images/contour-filter.png)
 
-!!! Tip "Quick way to add a filter"
+!!! Tip "Quick search to add a filter"
 
     When you know the name of the filter you want to add, a quicker way than navigating the Filter menu is to use **Ctrl+Spacebar**. This will show a search dialog where you can type (part of) the filter name and matching filters will get listed. Select the filter you want and press **Enter** to add it.
-    Of course, make sure to have selected the filter whose inputs you want to use before adding the downstream filter.
+
+    Of course, make sure to have selected the filter whose input you want to use before adding the downstream filter.
 
 ▶ Next, we want to see what this filter does: in the __Properties__ tab, set the value of the contour under __Isosurfaces__ to 500 and click on __Apply__ and you should see a surface more-or-less representing the boy's skin.
 
