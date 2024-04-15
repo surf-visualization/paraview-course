@@ -43,7 +43,9 @@ markdown_extensions:
 plugins:
   - search
   - git-revision-date-localized:
-      type: datetime
+      #type: datetime
+      type: custom
+      custom_format: "%d %B %Y %H:%M:%S"      
       timezone: Europe/Amsterdam
 
 # Input dir will be searched for *.md files
