@@ -8,7 +8,7 @@ hide:
 ParaView comes with a Python 3.x layer that can be used for several different tasks:
 
 * Automating visualization workflows
-* Saving and restoring the ParaView state
+* Storing the ParaView state
 * Creating custom filters
 * Creating custom plots
 
@@ -39,6 +39,10 @@ The written script usually contains quite a bit of code, as it represent not jus
 A Python state file (and trace as well) can later be re-executed using `File > Load State`, picking `Python state file` as file type. Note that in this case the current state is *not* cleared, so the script will add to the current state.
 
 Also note that no data used by the filter pipeline is stored in the state, only the pipeline setup (i.e. filter types, parameters and connections). So when re-executing the state the data files referenced by pipeline filters need to be available for reading.
+
+!!! Tip "ParaView State Files (.psvm)"
+
+    Using Python is one method for saving ParaView state, but the default is to use an XML-based format, with extension .pvsm. This file can also be written using `File > Save State`, file type `ParaView state file`.
 
 !!! Tip "Saving (XML) state in a screenshot file"
 

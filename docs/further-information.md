@@ -3,7 +3,7 @@ hide:
     - navigation
 ---
 
-# Further information
+# Miscellaneous
 
 ## Official resources
 
@@ -59,7 +59,21 @@ Enabling `View > Statistics inspector` will add a panel showing high-level infor
 
 ## Tips
 
-### Filter quick search
+### Searching and finding (hidden) properties
+
+Most filters have quite a lot of properties. **Some of them are even hidden by default**, and will only get listed by enabling the advanced property toggle ![](./images/wheel.png){.iconimg}. 
+
+![](./images/properties-header.png)
+
+Luckily, properties can be filtered on (partial) names using the `Search ...` entry, and the resulting list will show all matching properties, including hidden ones.
+
+### Filter documentation
+
+You can easily view the documentation for a particular filter by selecting that filter in the pipeline editor and pressing the `?` button at the top of the properties area:
+
+![](./images/help-button.png)
+
+### Quick filter search
 
 With **`Ctrl+Space`** you can bring up the filter quick search menu:
 
@@ -67,4 +81,12 @@ With **`Ctrl+Space`** you can bring up the filter quick search menu:
 
 By typing the first few letters of a filter name, "cont" in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that that particular filter is not compatible with the currently selected filter's output data type.
 
+### Linking cameras between views
 
+If you have split the main 3D view into two (more more) views you can easily link the cameras between the views: right-click on a view, click `Link camera...` and then click on the view whose camera you want to link to. Now, the view cameras will stay the same when you interact with either view.
+
+### Docking the Output Messages window
+
+Sometimes, a lot of warning or error messages will keep showing up in the Output Messages window. Even if you click away the window it will reappear on the next message. One way to slightly improve the situation is to dock the window in the main UI. For this, use the little windows icon:
+
+![](./images/window-dock.png)
