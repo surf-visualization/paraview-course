@@ -9,35 +9,15 @@
 12:40 – 13:00 * Q&A and closing (20 min)
 
 
+-> add help ? tip
+-> volume rendering TF editor in exercise?
+
+
 
 can have multiple layouts in UI
 
 line chart view, with Plot Data filter, can even do scatter plots
 
-
-paraview state file
-ALT...vtk file (coral growth)
-
-Load file, isosurface
-Save State to .pvsm file
-clear scene, load pvsm
-
-Second option: save state to .py file
-Clear scene, load .py file
-
-More flexible way: make trace
-Start trace
-Load file, contour, clip, save screenshot (don't embed state)
-Show .py file
-Note commented lines at the bottom of the script
-
-Again, clear scene, load state from .py file
-Notice head.png got written
-
-Once more trace pipeline, this time save screenshot AND embed state
-Load screenshot PNG file (identify -verbose head.png)
-
-Command-line: pvpython, pvbatch
 
 
  
@@ -72,16 +52,6 @@ node editor plugin, verbosity option
 mention blender courses
 
 
-https://www.paraview.org/Wiki/ParaView_Release_Notes
-
-5.8  18-02-2020
-5.9  28-01-2021
-5.10 04-01-2022
-5.11 17-11-2022
-5.12 04-03-2024
-
-
-
 
 https://www.kitware.com//matplotlib-view-coming-in-paraview-4-1/
 https://www.kitware.com/paraview-python-view-is-now-more-versatile/
@@ -109,15 +79,3 @@ Can only have a single PythonView?
 https://discourse.paraview.org/t/what-to-pass-as-view-for-python-view-call-render-function/9784/3
 
 
-
-
-
-course chapters
-- exercises
-- explanatory
-- reference material
-
-slides
-- explanatory
-
-scripts for walkthroughs

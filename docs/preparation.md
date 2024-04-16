@@ -43,4 +43,4 @@ This directory will now have 4 datasets:
 * __ALT_PRPB001A.vtk__: This file contains the results of a simulation of a coral growth. The scalars in this file represent the time of growth of a coral (this data is provided courtesy of Jaap Kaandorp , Section Computational Science, UvA).
 * __SMRX.vtk__: This is a flow simulation of a viscous fluid through a stationary mixer (this data is provided courtesy of Drona Kandhai, Section Computational Science, UvA).
 
-The remainder of this document contains four exercises based on these datasets.
+Under the [Exercises](../exercise1) section there are four exercises based on these datasets.
