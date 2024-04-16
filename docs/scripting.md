@@ -28,6 +28,8 @@ The Python Script Editor window will pop up and will show the Python code repres
 
 In principle, the generated script is self-contained and can be run later using the methods described below, for example from the command-line. Or you can use a Python trace as a basis for writing your own Python code for creating automated ParaView workflows.
 
+Note the commented part at the end of the trace, containing different statements, for example to save a screenshot or animation. Uncommenting some of those statements can be an easy way to get a script that does something useful, based on a trace of actions.
+
 ## Saving state
 
 A different way to get a Python representation from your current scene state is to use `File > Save State`, pick `Python state file` as file type, and then save to a .py file. In most cases the defaults in the Python State Options window are good enough.
