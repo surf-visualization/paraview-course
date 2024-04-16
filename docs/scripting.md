@@ -20,7 +20,7 @@ Below, we discuss the different possibilities listed above in more detail.
 
 The easiest way to get started with Python scripting from the ParaView GUI is to use the Trace feature:
 
-* `Tools > Start Trace`, adjust options in the Trace Options dialog as needed, press OK.
+* `Tools > Start Trace`, adjust options in the Trace Options dialog as needed (usually the defaults are fine), press OK.
 * Perform actions within the GUI (for example, load a data file, add a Contour filter, press Apply)
 * `Tools > Stop Trace`
 
