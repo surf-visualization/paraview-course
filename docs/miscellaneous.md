@@ -7,7 +7,7 @@ hide:
 
 ## Official resources
 
-The official [ParaView User Guide](https://docs.paraview.org/en/latest/UsersGuide/index.html) is quite good and contain lots of detailed information on data analysis and visualization with ParaView. The section in the User Guide on the ParaView [data model](https://docs.paraview.org/en/latest/UsersGuide/understandingData.html#vtk-data-model) can be especially relevant to understand how filters operate, and how to represent different types of datasets within this model.
+The official [ParaView User Guide](https://docs.paraview.org/en/latest/UsersGuide/index.html) is quite good and contain lots of detailed information on data analysis and visualization with ParaView. The section in the User Guide on the ParaView [data model](https://docs.paraview.org/en/latest/UsersGuide/understandingData.html#vtk-data-model) can be especially relevant to understand how filters operate, and how to represent different types of datasets within this model. More information on the different file readers supported by ParaView can be found [here](https://www.paraview.org/Wiki/ParaView/Users_Guide/List_of_readers).
 
 The [ParaView Reference Manual](https://docs.paraview.org/en/latest/ReferenceManual/index.html) has more information on UI components and Python scripting.
 
