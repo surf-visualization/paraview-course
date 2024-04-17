@@ -18,4 +18,4 @@ There are also a few chapters with details on specific topics, such as scripting
 
 Whenever there is a step to perform in an exercise this will be marked with a ▶ character. For example:
 
-    ▶ Please perform this instruction
+    ▶ Please open file ... and do ...
