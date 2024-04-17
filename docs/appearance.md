@@ -19,11 +19,11 @@ Such a rendering lacks clues that you as a viewer normally uses to understand sh
 
 As you can hopefully see, such a rendering provides much more information. For example, the parts seen through the right eye are now clearly seen to be located quite far backwards, something that was hard to judge in the non-shadowed image, and you can judge how much overhang there is from the cheekbone.
 
-To enable such shadowed rendering we used the *Raytracing* modes in ParaView. These use more advanced rendering and lighting techniques to produce more realistic renderings. To enable this for a particular object, select the corresponding filter and check `Enable Ray Tracing` under the __Ray Traced Rendering__ property block, and then check `Shadows`.
+To enable such shadowed rendering we used the *Raytracing* modes in ParaView. These use more advanced rendering and lighting techniques to produce more realistic renderings. To enable this *for the whole scene*, select a filter and check `Enable Ray Tracing` under the __Ray Traced Rendering__ property block (all the way at the bottom), and then check `Shadows`.
 
 ![](./images/raytracing-settings.png)
 
-This will change the rendering mode and show shadows on the object, just like the image above.
+This will change the rendering mode and show shadows on objects, just like the image above.
 
 !!! warning "Slow interaction with ray tracing modes" 
 
