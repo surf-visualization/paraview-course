@@ -36,7 +36,7 @@ In this particular case we used the `OSPRay raycaster`, which is a CPU-based ren
 
 ## Path tracing
 
-A more advanced rendering method is Path tracing, which simulates more realistic lighting effects, such as light bouncing between surfaces reaching otherwise dark areas. 
+A more advanced rendering method is Path tracing, which simulates more realistic lighting effects, such as light bouncing between surfaces reaching otherwise dark areas. Shadowing is by definition a part of the lighting when using path tracing, so the `Shadows` checkbox is greyed out.
 
 There's two path tracer modes in Paraview, the OSPray path tracer and the OptiX path tracer. The former (OSPray), is always available and is CPU-based, while the latter (OptiX) is GPU-based and only available if your system has an NVIDIA GPU. So the latter is to be preferred if you can enable it, as it will lead to less interaction slowdown. The resulting images will differ somewhat in lighting between these rendering modes, by the way.
 
