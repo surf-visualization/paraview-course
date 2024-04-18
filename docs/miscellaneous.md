@@ -81,6 +81,22 @@ With **`Ctrl+Space`** you can bring up the filter quick search menu:
 
 By typing the first few letters of a filter name, "cont" in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that that particular filter is not compatible with the currently selected filter's output data type.
 
+### Rename a filter
+
+You can rename a filter by selecting it and then double-clicking it in the pipeline browser (or right-click and then `Rename`).
+
+![](./images/rename-filter.png)
+
+### Changing a filter's input
+
+You can change the input of a filter in the pipeline by right-clicking on it and picking `Change input`. This will bring up a dialog for selecting the new upstream filter. 
+
+Below is an example of changing the CSV source of a pipeline to an updated file. This can be useful if during loading of a state file one or more input files can't be found (e.g. due to a changed path).
+
+![](./images/change-input.png)
+
+After the new input is set the pipeline will re-execute to make itself up-to-date.
+
 ### Linking cameras between views
 
 If you have split the main 3D view into two (more more) views you can easily link the cameras between the views: right-click on a view, click `Link camera...` and then click on the view whose camera you want to link to. Now, the view cameras will stay the same when you interact with either view.
@@ -91,12 +107,3 @@ Sometimes, a lot of warning or error messages will keep showing up in the Output
 
 ![](./images/window-dock.png)
 
-### Changing a filter's input
-
-You can change the input of a filter in the pipeline by right-clicking on it and picking `Change input`. This will bring up a dialog for selecting the new upstream filter. 
-
-Here's an example of changing the CSV source of a pipeline to an updated file:
-
-![](./images/change-input.png)
-
-After the new input is set the pipeline will re-execute to make itself up-to-date.
