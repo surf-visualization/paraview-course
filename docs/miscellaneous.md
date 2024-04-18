@@ -90,3 +90,13 @@ If you have split the main 3D view into two (more more) views you can easily lin
 Sometimes, a lot of warning or error messages will keep showing up in the Output Messages window. Even if you click away the window it will reappear on the next message. One way to slightly improve the situation is to dock the window in the main UI. For this, use the little windows icon:
 
 ![](./images/window-dock.png)
+
+### Changing a filter's input
+
+You can change the input of a filter in the pipeline by right-clicking on it and picking `Change input`. This will bring up a dialog for selecting the new upstream filter. 
+
+Here's an example of changing the CSV source of a pipeline to an updated file:
+
+![](./images/change-input.png)
+
+After the new input is set the pipeline will re-execute to make itself up-to-date.
