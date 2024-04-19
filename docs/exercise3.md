@@ -15,6 +15,10 @@ change dynamically over time, showing us the growth of the coral over time.
 
 ▶ To achieve this, we need to open the _Time Manager_, which can be enabled from the main menu with __View → Time Manager__. In the time manager toolbar, set __Number of frames__ to __100__. 
 
+!!! warning "Time Manager in older paraview versions"
+
+    In ParaView versions before 5.12 the Time Manager was called the _Animation View_, also available under the _View_ menu. It is very similar to the Time Manager in 5.12, but not completely the same. So you might have to puzzle a bit how to use it in those older versions.
+
 ▶ Link the contour iso-surface value to the time sequence by using the blue __+__ button right of the __Contour1__ and __Isosurfaces__ dropdown menus.
 
 ![](images/animation.png)
