@@ -45,7 +45,7 @@ Since the coral is a three-dimensional structure, it is nice to look at all side
 
 Next, we will add a circular camera motion, a so-called _orbit_.
 
-▶ In the Time Manager select __Camera__ in the Animations row, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. This will add a __Camera - RenderView1__ strip. If you play the animation you will see the scene rotates over time, however, *the data is shown upside down...*
+▶ In the Time Manager in the Animations row select __Camera__ from the left-most drop-down box, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. This will add a __Camera - RenderView1__ strip. If you play the animation you will see the scene rotates over time, however, *the data is shown upside down...*
 
 So the default camera orbit needs some tweaking, as it is set up based on the current view. For example, the camera might be a bit too close to the coral object and we want to move it back a bit. 
 
