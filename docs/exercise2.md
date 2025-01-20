@@ -34,7 +34,7 @@ ParaView does not know by itself how these individual variables relate to the po
 
 ▶ Compare the __Information__ tabs of the __wervel.csv__ source and the __TableToPoints__ filter to see how the output data has changed (type, number of points/cells, etc), and verify that the data arrays produced by the TableToPoints filter match those of the wervel.csv source.
 
-▶ If needed, enable visibility of the TableToPoints output by clicking the eye icon next to it in the pipeline browser. If you have both a RenderView (the 3D panel) and a Spreadsheet view then make sure you have the RenderView selected (by clicking in it) before enabling visibility of the TableToPoints output. You should now see a regular 3D grid of (white) points, indicating that the point position values from the CSV data have correctly been set based on the table input.
+▶ If needed, enable visibility of the TableToPoints output by clicking the eye icon next to it in the pipeline browser. **If you have both a RenderView (the 3D panel) and a Spreadsheet view then make sure you have the RenderView selected (by clicking in it) before enabling visibility of the TableToPoints output.** You should now see a regular 3D grid of (white) points, indicating that the point position values from the CSV data have correctly been set based on the table input.
 
 ## Creating velocity vectors
 
@@ -94,7 +94,7 @@ Now lets do some initial particle tracing through the flow field using the strea
 
 This will give you a set of lines, each representing a trace of a particle as it follows the flow in the tornado. 
 
-▶ Note the small white 3D axis and large sphere at the bottom of the tornado: this is the seed center (12,12,0) and given radius around which the traced particles start. You could experiment with different locations of the seed point to see how this influences the streamlines.
+▶ Note the small red 3D axis and large sphere at the bottom of the tornado: this is the seed center (12,12,0) and given radius around which the traced particles start. You could experiment with different locations of the seed point to see how this influences the streamlines.
 
 !!! Hint "Accidental sphere changes / Resetting a filter to last executed values"
 

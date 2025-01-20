@@ -19,7 +19,7 @@ All course data files and slides can be found at https://edu.nl/k6ttu. There we 
 
 We provide ParaView binaries *for Windows and Linux* for this course in the course materials share (see above). For macOS there are many variations available on https://www.paraview.org/download/ and you probably know best yourself which one you need.
 
-This guide has been written for ParaView version **5.12**. Between ParaView versions small differences in GUI (and functionality) exist, but most of what is written in these notes should be easy to apply to other versions of ParaView. 
+This guide has been written for ParaView version **5.13**. Between ParaView versions small differences in GUI (and functionality) exist, but most of what is written in these notes should be easy to apply to other versions of ParaView.
 
 !!! Warning "OpenGL compatibility"
 

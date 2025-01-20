@@ -21,9 +21,11 @@ change dynamically over time, showing us the growth of the coral over time.
 
 ▶ Link the contour iso-surface value to the time sequence by using the blue __+__ button right of the __Contour1__ and __Isosurfaces__ dropdown menus.
 
-![](images/animation.png)
+![](images/time-manager.png)
 
 ▶ Verify that this adds __Contour1__ to the timeline, directly under __Animations__ as a second "strip" over the full length of the time bar. The values at the far left and right edges of the strip are the isosurface values used at those time points (1280 and 37120, respectively). These values are based on the min/max values from the input dataset, which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__.
+
+![](images/time-manager2.png)
 
 ▶ With the animation set up you can now use the playback buttons, either in the Time Manager or in the main toolbar, to play through the growth of the simulation. The double arrow button controls if the playback loops back to the start. When the animation is paused you can change the current time by clicking or dragging in the Time Sources bar.
 
