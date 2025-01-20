@@ -18,8 +18,8 @@ extra_css:
   
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/SURF__en
+    - icon: fontawesome/brands/mastodon
+      link: https://social.edu.nl/@SURF/
 
 markdown_extensions:
   - admonition    
@@ -68,4 +68,4 @@ nav:
   - miscellaneous.md
   #- privacy.md
     
-copyright: Copyright &copy; 2018-2024 SURF
+copyright: Copyright &copy; 2018-2025 SURF
