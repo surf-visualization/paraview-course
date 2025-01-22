@@ -13,7 +13,7 @@ Both data files as well as ParaView binaries for Windows and Linux can be downlo
 
 ## Course materials share
 
-All course data files and slides can be found at https://edu.nl/k6ttu. There we also provide ParaView binaries for Windows and Linux (see below).
+All course data files and slides can be found at [here](https://edu.nl/k6ttu). There we also provide ParaView binaries for Windows and Linux (see below).
 
 ## Install ParaView
 

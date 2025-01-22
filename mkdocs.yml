@@ -35,6 +35,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences  # For image attributes
+  - pymdownx.magiclink
   - attr_list
   - markdown_captions       # https://pypi.org/project/markdown-captions/
   - footnotes
