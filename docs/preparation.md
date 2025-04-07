@@ -29,6 +29,9 @@ This guide has been written for ParaView version **5.13**. Between ParaView vers
 
     2. Use an older version of ParaView, like 4.4 (available from http://www.paraview.org/download). In this case the GUI and menu options will be slightly different in naming, placement and look compared that what is described in these notes.
 
+!!! Warning "Wayland on Linux"
+
+    There are long-standing known [issues](https://discourse.paraview.org/t/paraview-on-arch-linux-gnome-not-running-on-wayland/14264) with ParaView 5.12 (and probably 5.13 as well) on systems using Wayland instead of X.org. Unfortunately, there is no easy workaround, other than recompiling ParaView yourself as indicated [here](https://discourse.paraview.org/t/paraview-on-arch-linux-gnome-not-running-on-wayland/14264/2). There's a [bug report](https://gitlab.kitware.com/paraview/paraview/-/issues/21738) to track any developments on the ParaView side, and [here](https://gitlab.kitware.com/vtk/vtk/-/issues/17982) for the VTK side.
 
 ## Download and extract data
 
