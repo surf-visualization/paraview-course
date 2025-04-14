@@ -59,6 +59,20 @@ Enabling `View > Statistics inspector` will add a panel showing high-level infor
 
 ## Tips
 
+### Quick filter search
+
+With **`Ctrl+Space`** you can bring up the filter quick search menu:
+
+![](./images/filter-search.png)
+
+By typing the first few letters of a filter name, "cont" in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that that particular filter is not compatible with the currently selected filter's output data type.
+
+### Getting filter help
+
+Pressing the **`?`** button at the top of the current filter's properties will show a help screen for that filter type. It will contain a description of what the filter does, its input(s) and output(s), its settings, and any other useful information.
+
+![](./images/filter-help.jpg)
+
 ### Searching and finding (hidden) properties
 
 Most filters have quite a lot of properties. **Some of them are even hidden by default**, and will only get listed by enabling the advanced property toggle ![](./images/wheel.png){.iconimg}. 
@@ -67,19 +81,7 @@ Most filters have quite a lot of properties. **Some of them are even hidden by d
 
 Luckily, properties can be filtered on (partial) names using the `Search ...` entry, and the resulting list will show all matching properties, including hidden ones.
 
-### Filter documentation
 
-You can easily view the documentation for a particular filter by selecting that filter in the pipeline editor and pressing the `?` button at the top of the properties area:
-
-![](./images/help-button.png)
-
-### Quick filter search
-
-With **`Ctrl+Space`** you can bring up the filter quick search menu:
-
-![](./images/filter-search.png)
-
-By typing the first few letters of a filter name, "cont" in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that that particular filter is not compatible with the currently selected filter's output data type.
 
 ### Rename a filter
 

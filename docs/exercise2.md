@@ -108,7 +108,7 @@ of the streamlines.
 
 ▶ At this point, we'd like to add the original data domain as an outline. For this, enable visibility of the __TableToPoints__ filter and switch its representation to __Outline__.
 
-▶ You can experiment with different colorings of the tubes, based on e.g. velocity, angular velocity or rotation. Use the coloring controls under __Coloring__ for this.
+▶ You can experiment with different colorings of the tubes, based on e.g. velocity, angular velocity or rotation. Use the coloring controls in the filters settings under __Coloring__ for this.
 
 ## Glyphs
 
@@ -136,6 +136,6 @@ Let's try to improve the overall visualization, to make it easier to interpret.
 
 You might wonder about the the number of glyphs placed, compared to the 25,000 points in the dataset. There is currently quite a large number of glyphs, and perhaps still too many to be effective. This doesn't help in the overall visual interpretation of the data, but we do need to balance getting enough coverage of the full dataset.
 
-▶ The settings under __Masking__ control the number and distribution of the glyphs placed. See what happens to the resulting visualization when you show a glyph for every 10th or 11th point, or 500 glyphs uniformly distributed (and why that means you need choose these kinds of parameters with care).
+▶ The filter settings under __Masking__ provide different modes options for the number and distribution of the glyphs placed. For example, see what happens when using Glyph Mode `Every Nth point` when you show a glyph for every 10th or 11th point. Or use 500 glyphs uniformly distributed (and why that means you need choose these kinds of parameters with care).
 
 ▶ A useful variant is to apply glyphs *to the output of the Stream Trace filter* (by creating a second Glyph filter). This is possible because the generated streamlines are themselves polygonal data, where each streamline consists of a Poly-Line cell that uses a set of 3D points. As a Glyph filter uses point positions to place glyphs we can place them for each streamline. Experiment with this, using different types of glyphs, like Sphere and Arrow. Also try coloring by IntegrationTime to verify the direction in which the streamlines where "grown".
