@@ -22,17 +22,19 @@ For asking questions, as well as a knowledge-base to search, there is the ParaVi
 
 ### Common view types
 
-The type of the main view area can be changed, or even split into multiple view areas of the same or different types. The buttons marked *View area controls* above allow these changes. When adding a view area, or changing the main area, a menu is shown with the different types of views that can be created:
+The type of the main view area can be changed, or even split into multiple view areas of the same or different types. The buttons marked *View area controls* above allow these changes. When adding a view area, or changing the main area (delete it with the **`x`** button first), a menu is shown with the different types of views that can be created:
 
 ![](./images/view-area-menu.png){: width=500px }
 
 Below, we describe a few of these.
 
-* The **Render View** is the default and most used one. It provides an interactive 3D view where output of filters is shown. Per filter a visual representation can be chosen, as well as visibility per filter.
+* The **Render View** is the default and most used one. It provides an interactive 3D view where output of filters is shown. Per filter a visual representation can be chosen, as well as visibility per filter in the pipeline.
 
     ![](./images/render-view.png){: width=500px }
 
 * The **SpreadSheet View** shows underlying point and cell output data (and other types) of a single filter. This can be really useful to understand the underlying data values, to see if your import worked correctly, if a Python script generates correct values, etc.
+
+    Note that the data shown depends on the filter chosen under **`Showing`** in the top-left, *not* the currently selected filter in the pipeline.
 
     ![](./images/spreadsheet-view.png){: width=500px }
 
@@ -50,6 +52,8 @@ As shown in the interface guide above, the memory indicator at the bottom of the
 
 ![](./images/memory-inspector.png)
 
+When using ParaView's client-server mode this will also list the memory usage each of the server processes.
+
 ### Statistics inspector
 
 Enabling `View > Statistics inspector` will add a panel showing high-level information on all different filters in the pipeline. This includes geometry size for rendering, which is something not shown in the regular Information panel.
@@ -65,7 +69,7 @@ With **`Ctrl+Space`** you can bring up the filter quick search menu:
 
 ![](./images/filter-search.png)
 
-By typing the first few letters of a filter name, "cont" in this case, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that that particular filter is not compatible with the currently selected filter's output data type.
+By typing the first few letters of a filter name, "cont" in the example above, you can quickly find and add a filter as a child of the currently selected filter in the pipeline browser. The greyed out filter names indicate that those particular filters are not compatible with the currently selected filter's output data type.
 
 ### Getting filter help
 
@@ -80,8 +84,6 @@ Most filters have quite a lot of properties. **Some of them are even hidden by d
 ![](./images/properties-header.png)
 
 Luckily, properties can be filtered on (partial) names using the `Search ...` entry, and the resulting list will show all matching properties, including hidden ones.
-
-
 
 ### Rename a filter
 
