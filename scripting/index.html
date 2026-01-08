@@ -1,0 +1,1184 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://surf-visualization.github.io/paraview-course/scripting/">
+      
+      
+        <link rel="prev" href="../appearance/">
+      
+      
+        <link rel="next" href="../miscellaneous/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Scripting - Introduction to Scientific Visualization with ParaView</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scripting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Introduction to Scientific Visualization with ParaView" class="md-header__button md-logo" aria-label="Introduction to Scientific Visualization with ParaView" data-md-component="logo">
+      
+  <img src="../images/surf-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to Scientific Visualization with ParaView
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scripting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../preparation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Preparation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../exercise1/" class="md-tabs__link">
+          
+  
+  
+  Exercises
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../appearance/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Appearance
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Scripting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../miscellaneous/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Miscellaneous
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Introduction to Scientific Visualization with ParaView" class="md-nav__button md-logo" aria-label="Introduction to Scientific Visualization with ParaView" data-md-component="logo">
+      
+  <img src="../images/surf-logo.svg" alt="logo">
+
+    </a>
+    Introduction to Scientific Visualization with ParaView
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercise 1 - CT scan of a boy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercise 2 - A Tornado simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercise 3 - Time-dependent Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bonus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bonus Exercise - A stationary fluid mixer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appearance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appearance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interaction-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaction tracing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line execution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gui-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GUI support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GUI support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-python-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Python Shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-python-script-editor-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Python Script Editor window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmable-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmable Filter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python View
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../miscellaneous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interaction-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaction tracing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line execution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gui-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GUI support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GUI support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-python-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Python Shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-python-script-editor-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Python Script Editor window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmable-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmable Filter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python View
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="scripting">Scripting<a class="headerlink" href="#scripting" title="Permanent link">&para;</a></h1>
+<p>ParaView comes with a Python 3.x layer that can be used for several different tasks:</p>
+<ul>
+<li>Automating visualization workflows</li>
+<li>Storing the ParaView state</li>
+<li>Creating custom filters</li>
+<li>Creating custom plots</li>
+</ul>
+<p>Obviously, Python scripting is an extensive and technically-oriented topic, and we won't go deep into the peculiarities of learning the Python API in ParaView. The best resources for that are the official tutorials, starting with the <a href="https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchParaViewAndPython.html">Python &amp; Batch: ParaView &amp; Python chapter</a>. A dedicated set of ParaView Python documentation is available <a href="https://kitware.github.io/paraview-docs/latest/python/index.html">here</a>.</p>
+<p>Below, we discuss the different possibilities listed above in more detail.</p>
+<h2 id="interaction-tracing">Interaction tracing<a class="headerlink" href="#interaction-tracing" title="Permanent link">&para;</a></h2>
+<p>The easiest way to get started with Python scripting from the ParaView GUI is to use the Trace feature:</p>
+<ul>
+<li><code>Tools &gt; Start Trace</code>, adjust options in the Trace Options dialog as needed (usually the defaults are fine), press OK.</li>
+<li>Perform actions within the GUI (for example, load a data file, add a Contour filter, press Apply)</li>
+<li><code>Tools &gt; Stop Trace</code></li>
+</ul>
+<p>The Python Script Editor window will pop up and will show the Python code representing the actions you performed. The script will usually contain quite a few more things than you did yourself in the GUI, as it records low-level implicit actions as well, for example related to rendering and updating the views. </p>
+<p>In principle, the generated script is self-contained and can be run later using the methods described below, for example from the command-line. Or you can use a Python trace as a basis for writing your own Python code for creating automated ParaView workflows.</p>
+<p>Note the commented part at the end of the trace, containing different statements, for example to save a screenshot or animation. Uncommenting some of those statements can be an easy way to get a script that does something useful, based on a trace of actions.</p>
+<h2 id="saving-state">Saving state<a class="headerlink" href="#saving-state" title="Permanent link">&para;</a></h2>
+<p>A different way to get a Python representation from your current scene state is to use <code>File &gt; Save State</code>, pick <code>Python state file</code> as file type, and then save to a .py file. In most cases the defaults in the Python State Options window are good enough.</p>
+<p>The written script usually contains quite a bit of code, as it represent not just the scene in terms of filters, but also the UI state and things like animation state.</p>
+<p>A Python state file (and trace as well) can later be re-executed using <code>File &gt; Load State</code>, picking <code>Python state file</code> as file type. Note that in this case the current state is <em>not</em> cleared, so the script will add to the current state.</p>
+<p>Also note that no data used by the filter pipeline is stored in the state, only the pipeline setup (i.e. filter types, parameters and connections). So when re-executing the state the data files referenced by pipeline filters need to be available for reading.</p>
+<div class="admonition tip">
+<p class="admonition-title">ParaView State Files (.psvm)</p>
+<p>Using Python is one method for saving ParaView state, but the default is to use an XML-based format, with extension .pvsm. This file can also be written using <code>File &gt; Save State</code>, file type <code>ParaView state file</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Saving (XML) state in a screenshot file</p>
+<p>An interesting feature that was added in ParaView 5.12 is to save the current state as XML metadata (so not as Python) in a screenshot PNG file. This only works for screenshots in PNG file format.</p>
+<p>Use <code>File &gt; Save Screenshot</code>, pick PNG as image type, enter the file name, click OK and then in the Save Screenshot Options dialog enable <code>Embed ParaView State</code>. The resulting PNG file can then later be loaded with <code>File &gt; Load State</code>.</p>
+<p>The reason for mentioning such non-Python state here is that you can save such screenshots from Python by passing <code>EmbedParaViewState=1</code> to the <code>SaveScreenshot()</code> function, which might be interesting for scripts doing batch-oriented rendering.</p>
+</div>
+<h2 id="command-line-execution">Command-line execution<a class="headerlink" href="#command-line-execution" title="Permanent link">&para;</a></h2>
+<p>To run Python scripts from the command-line ParaView provides two executables, <code>pvpython</code> and <code>pvbatch</code>:</p>
+<ul>
+<li><code>pvpython</code> allows interactive use, as well as batch execution of Python scripts.</li>
+<li><code>pvbatch</code> is very similar to <code>pvpython</code>, but it can only run scripts, there's no interactive prompt. However, it can be run under MPI to allow parallel processing of larger datasets, something that isn't possible with <code>pvpython</code>.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Remote and parallel usage</p>
+<p>There's another <a href="https://docs.paraview.org/en/latest/ReferenceManual/parallelDataVisualization.html">difference</a> between <code>pvpython</code> and <code>pvbatch</code> in that <code>pvpython</code> can be used to connect to a running ParaView server, thereby allowing remote (client-server) usage. In contrast, <code>pvbatch</code> always runs locally on the system and cannot connect as a client to a ParaView server.</p>
+</div>
+<p><code>pvpython</code> contains GUI-related components, so it might show windows when executing certain commands (such as making a screenshot).</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">$</span> <span class="n">pvpython</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Python</span> <span class="mf">3.11.8</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Feb</span> <span class="mi">12</span> <span class="mi">2024</span><span class="p">,</span> <span class="mi">14</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">05</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">13.2.1</span> <span class="mi">20230801</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">paraview.simple</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">wavelet</span> <span class="o">=</span> <span class="n">Wavelet</span><span class="p">()</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">Show</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">[</span><span class="n">openvkl</span><span class="p">]</span> <span class="n">application</span> <span class="n">requested</span> <span class="n">ISPC</span> <span class="n">device</span> <span class="n">width</span> <span class="mi">8</span><span class="n">via</span> <span class="n">device</span> <span class="n">name</span> <span class="n">cpu_8</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">[</span><span class="n">openvkl</span><span class="p">]</span> <span class="n">CPU</span> <span class="n">device</span> <span class="n">instantiated</span> <span class="k">with</span> <span class="n">width</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ISA</span><span class="p">:</span> <span class="n">AVX2</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="o">&lt;</span><span class="n">paraview</span><span class="o">.</span><span class="n">servermanager</span><span class="o">.</span><span class="n">UniformGridRepresentation</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x71244c38f8d0</span><span class="o">&gt;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">contour</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">Input</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">contour</span><span class="o">.</span><span class="n">Isosurfaces</span> <span class="o">=</span> <span class="p">[</span><span class="mf">200.0</span><span class="p">]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">Show</span><span class="p">(</span><span class="n">contour</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="o">&lt;</span><span class="n">paraview</span><span class="o">.</span><span class="n">servermanager</span><span class="o">.</span><span class="n">GeometryRepresentation</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x71244c3f8550</span><span class="o">&gt;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">SaveScreenshot</span><span class="p">(</span><span class="s2">&quot;iso.png&quot;</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># Shows window, which stays open</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="kc">True</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="o">&gt;&gt;&gt;</span> 
+</span></code></pre></div>
+<p>The above shows interactive usage, while you can also run a script from a file, just like regular <code>python</code>:</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">$</span> <span class="n">cat</span> <span class="n">wavelet</span><span class="o">-</span><span class="n">contour</span><span class="o">.</span><span class="n">py</span> 
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">paraview.simple</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">wavelet</span> <span class="o">=</span> <span class="n">Wavelet</span><span class="p">()</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">Show</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">contour</span> <span class="o">=</span> <span class="n">Contour</span><span class="p">(</span><span class="n">Input</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">contour</span><span class="o">.</span><span class="n">Isosurfaces</span> <span class="o">=</span> <span class="p">[</span><span class="mf">200.0</span><span class="p">]</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">Show</span><span class="p">(</span><span class="n">contour</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">SaveScreenshot</span><span class="p">(</span><span class="s2">&quot;iso.png&quot;</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="err">$</span> <span class="n">pvpython</span> <span class="n">wavelet</span><span class="o">-</span><span class="n">contour</span><span class="o">.</span><span class="n">py</span> 
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">[</span><span class="n">openvkl</span><span class="p">]</span> <span class="n">application</span> <span class="n">requested</span> <span class="n">ISPC</span> <span class="n">device</span> <span class="n">width</span> <span class="mi">8</span><span class="n">via</span> <span class="n">device</span> <span class="n">name</span> <span class="n">cpu_8</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">[</span><span class="n">openvkl</span><span class="p">]</span> <span class="n">CPU</span> <span class="n">device</span> <span class="n">instantiated</span> <span class="k">with</span> <span class="n">width</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ISA</span><span class="p">:</span> <span class="n">AVX2</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># Briefly shows windows, which closes when the script is done</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Offscreen rendering</p>
+<p>Both <code>pvpython</code> and <code>pvbatch</code> support a <code>--force-offscreen-rendering</code> option, which avoids creating windows when rendering images. Depending on the system configuration where you're running ParaView this might or might not work. </p>
+</div>
+<h2 id="gui-support">GUI support<a class="headerlink" href="#gui-support" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Output messages area</p>
+<p>Enable <code>View &gt; Output Messages</code> and dock it somewhere in the GUI so you can see any output or errors when executing Python scripts.</p>
+</div>
+<h3 id="the-python-shell">The Python Shell<a class="headerlink" href="#the-python-shell" title="Permanent link">&para;</a></h3>
+<p>To work more interactively with scripting you can enable <code>View &gt; Python Shell</code>. This adds an interactive Python prompt to the UI. There, you can enter Python commands and see the results right away.</p>
+<p><img alt="" src="../images/python-shell.png" /></p>
+<p>The Python Shell also allows you to easily run Python script files using the <code>Run Script</code> button. Note that these get executed within the current scene state, the scene is not cleared first.</p>
+<h3 id="the-python-script-editor-window">The Python Script Editor window<a class="headerlink" href="#the-python-script-editor-window" title="Permanent link">&para;</a></h3>
+<p>ParaView contains a dedicated Python editor window, which can be shown using <code>Tools &gt; Python Script Editor</code>. It also gets shown automatically to hold any traces made, as described earlier.</p>
+<p>The editor window provides a syntax-highlighted area for Python code, and has limited editing facilities. It also appears to be a bit buggy in certain uses, so using an external editor might be preferable.</p>
+<h2 id="programmable-filter">Programmable Filter<a class="headerlink" href="#programmable-filter" title="Permanent link">&para;</a></h2>
+<p>The Programmable Filter (and similar Programmable Source) allows you to create a custom filter using Python. A Programmable Filter is a pipeline filter in all respects. It takes an input dataset and produces an output dataset of a chosen type. It can compute any function that you can write in Python (including use of packages). There's special support for making <a href="https://docs.paraview.org/en/latest/ReferenceManual/vtkNumPyIntegration.html">NumPy usage</a> easier with Paraview (and VTK) data types.</p>
+<p>Let's say we wanted to create a filter that normalizes a dataset using the minimum and maximum value ranges. Below is Python code for such a programmable filter, applied to a dataset having point data array "RTData":</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">data_in</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">PointData</span><span class="p">[</span><span class="s2">&quot;RTData&quot;</span><span class="p">]</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">minval</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data_in</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">maxval</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_in</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">data_out</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_in</span> <span class="o">-</span> <span class="n">minval</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">maxval</span> <span class="o">-</span> <span class="n">minval</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">output</span><span class="o">.</span><span class="n">PointData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_out</span><span class="p">,</span> <span class="s2">&quot;Normalized&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>In this case, the upstream filter whose data we are processing is a Wavelet source. The <code>inputs</code> array contains all input ports of the programmable filter, of which there is just one here, which is receiving data from the upstream wavelet source. On that input port we retrieve the point data array named "RTData" (which a wavelet value for each 3D point). We compute min and max values and normalize the input array in one go, thanks to NumPy, and then set that as the point data output array called "Normalized".</p>
+<p>Here's the GUI showing the pipeline, the code set on the programmable filter, as well as isosurfaces halfway in the data range, for the original wavelet dataset (left), and the normalized one (right). Note the different color map ranges.</p>
+<p><img alt="" src="../images/wavelet-normalization.png" /></p>
+<p>As you can see, it is quite easy to write a custom filter. As long as you can express whatever operation you need in Python. And for large datasets the operation needs to be efficient to execute, unless you don't mind waiting a bit.</p>
+<p>However, in this example the output data was a simple 3D array, containing per-point values, so that made the operation easy to express. But when you want to produce more exotic data types, such as 3D geometry, you will need to create data that adheres to the ParaView/VTK <a href="https://docs.paraview.org/en/latest/UsersGuide/understandingData.html#vtk-data-model">data model</a>.</p>
+<p>Editing the filter code can also be a bit cumbersome. The code area does not show a lot of lines, so you might need to scroll for longer scripts. With the <img alt="" class="iconimg" src="../images/editor-button.png" /> button you can open the Script Editor window in <em>linked</em> mode: any changes you make in the editor window will be applied to the filter code, and vice versa. You can even save the code to a script file from the Editor Window. However, it forces you to use the separate Editor Window, which will overlap the main GUI.</p>
+<h2 id="python-view">Python View<a class="headerlink" href="#python-view" title="Permanent link">&para;</a></h2>
+<p>Finally, there is the <a href="https://docs.paraview.org/en/latest/UsersGuide/displayingData.html#python-view">Python View</a>: a view area that shows an image that you create using a Python script. It can be used for custom plots, or any other type of image display. It is not the most efficient to use, unfortunately:</p>
+<ul>
+<li>It does not operate as a filter receiving upstream data, so the script needs to be hardcode explicitly which data it needs. This introduces a dependency between scene state and view code.</li>
+<li>Updating the view (i.e. when you change the script code) can't be forced with a button, but is handled implicitly when the Python View is redrawn.</li>
+<li>Error handling seems to be a bit buggy, with Python syntax errors causing ParaView to crash sometimes.</li>
+</ul>
+<p>For these reasons, we don't recommend using the Python View, unless you really need custom plot types within ParaView.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom" title="January 8, 2026 10:29:18 CET">08 January 2026 10:29:18</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../appearance/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Appearance" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Appearance
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../miscellaneous/" class="md-footer__link md-footer__link--next" aria-label="Next: Miscellaneous" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Miscellaneous
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2018-2025 SURF &bullet; <a href=../privacy> Privacy Information</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      <a href="https://www.surf.nl/en/visualisation-more-insight-into-your-data"><img style="height:48px" src=../images/surf-logo.svg></a>
+      <a href="http://visualisationlab.science.uva.nl/"><img style="height:48px" src=../images/uva-logo.png></a>          
+      
+        
+<div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+      
+      
+    
+    <a href="https://social.edu.nl/@SURF/" target="_blank" rel="noopener me" title="social.edu.nl" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54-.6-4.6-.9-9.3-.9-13.9 85.6 20.9 158.7 9.1 178.7 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6V190.1c0-49.7-64-51.6-64 6.9v62.5H201V197c0-58.5-64-56.6-64-6.9v114.2H90.3c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175"/></svg>
+    </a>
+  
+</div>
+      
+      <span style="; font-size:75%"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./images/cc-by-sa.png" width="100" /></a><br />This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International Public License.</a>.</span>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.top", "navigation.footer"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
