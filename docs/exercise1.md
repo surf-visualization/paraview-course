@@ -1,10 +1,12 @@
 # Exercise 1 - CT scan of a boy
 
+## Introduction
+
+In the first exercise we are going to take a look at a CT scan of a boy's head. A CT scanner produces a set of two dimensional X-ray images (usually called slices) that together form a 3D volume when stacked on top of each other. The 3D volume created in this way contains a density value for each voxel (the 3D equivalent of a pixel) of the area scanned. As each part of the body - bone, tissue, blood, etc - has a different density w.r.t. X-rays these parts can be isolated and visualized using the density values.
+
+*The boy in this CT scan was sent to the hospital for a reason, and as part of the exercise you are encouraged to use ParaView to investigate and visualize the data set, to see if you can find out why he was in hospital.*
+
 ## First steps
-
-In the first exercise we are going to take a look at a CT scan of a boy's head. A CT scanner produces a set of two dimensional X-ray images (usually called slices) that together form a 3D volume when stacked on top of each other. The 3D volume created in this way contains a density value for each voxel of the area scanned. As each part of the body (bone, tissue, blood, etc) has a different density w.r.t. X-rays these parts can be isolated and visualized using the density values.
-
-The boy in this CT scan was sent to the hospital for a reason, and as part of the exercise you are encouraged to use ParaView to investigate and visualize the data set, to see if you can find out why he was in hospital.
 
 ▶ To begin, start the ParaView application. How to start ParaView depends on where you installed the binaries after downloading them.
 
@@ -68,7 +70,9 @@ Our next job is to look into what this dataset contains. To be more precise, we 
 
 ![](images/contour500.png)
 
-▶ To get an even better view we can hide the slice view by clicking on the relevant eye icon in the pipeline browser. You should now see the contour surface by itself. 
+▶ To get an even better view we can hide the slice view by clicking on the relevant eye icon 👁 in the pipeline browser. You should now see the contour surface by itself.
+
+### Coloring
 
 Another thing you might want to do is play with the color settings. For example setting the color of the contour surface to something more skin-like than gray might be an improvement. 
 
@@ -88,11 +92,11 @@ Next we want to add some more contour surfaces representing certain features in 
 
 Note that although we now have multiple surfaces, one for each scalar value, they all have the same color, making them hard to distinguish. We can _assign a separate color for each scalar value_ to overcome this. 
 
-▶ Under __Coloring__ change the coloring mode to __Scalars__. Check the color scalar against the color of the surfaces shown.
+▶ Under __Coloring__ change the coloring mode to __Scalars__. Check the color scalar value against the color of the surfaces shown.
 
 ## Transparency
 
-▶ The surfaces are now a bit easier to comprehend, although you might have to search a bit for the surface for the highest scalar value (check the color scale what color it should be). 
+▶ The colored surfaces are a bit easier to comprehend, although you might have to search a bit for the surface for the highest scalar value (check the color scale what color it should be).
 
 We can improve things even further by using a bit of transparency.
 
@@ -100,4 +104,6 @@ We can improve things even further by using a bit of transparency.
 
 ![](images/opacity.png)
 
-▶ Finally, play a bit around with the viewpoint and inspect the visualization closely, and you should be able see why this boy was in hospital...
+## Spot the anomaly
+
+▶ Finally, play a bit around with the viewpoint and inspect the visualization closely. You can also try changing some of the isosurface values, or adding more levels. You should be able see why this boy was in hospital...

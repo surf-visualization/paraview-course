@@ -1,10 +1,12 @@
 # Exercise 2 - A Tornado simulation
 
-## Importing and preparing the data
+## Introduction
 
-In this exercise we will take a look at the results of simulating the wind in a tornado. The relevant dataset contains velocity vectors on a regular 3D grid (a so-called flow field). The data is contained in a simple file format: the well-known comma separated values format (CSV). 
+In this exercise we will take a look at the results of simulating the air flow in a tornado. The relevant dataset contains velocity vectors on a regular 3D grid (a so-called flow field). The data is contained in a simple file format: the well-known comma separated values format (CSV).
 
 The advantage of CSV is that it is a simple and human-readable format, and can be written and read by many applications. However, it is not always an efficient way of storing (large) datasets. 
+
+## Importing and preparing the data
 
 The data contained in the CSV file is not automatically identified and understood correctly by ParaView, it simply does not have enough information for that. Therefore when we open a CSV file, we first have to apply some filters to map the data to the correct data arrays that we can operate on. After this is done, we can use a stream-tracer filter on it to get a good impression of the wind flow in this simulation.
 
@@ -78,13 +80,15 @@ We can fix these two issues by applying a 3D Delaunay triangulation. This create
 
 The representation of the data in the 3D view will now have changed to a block, instead of points, indicating that there are now cells which take up regions of 3D space.
 
-▶ Check the __Information__ tab for the __Delaunay 3D__ filter and switch to __Surface with Edges__ representation to see how the data has changed, in terms of type, cells and points. You could also clip away part of the dataset with the __Clip__ filter to look at the cell structure inside of the dataset.
+▶ Check the __Information__ tab for the __Delaunay 3D__ filter and switch to __Surface With Edges__ representation to see how the data has changed, in terms of type, cells and points. You could also clip away part of the dataset with the __Clip__ filter to look at the cell structure inside of the dataset.
 
 The pipeline we constructed so far should look like this:
 
 ![](images/delaunaypipeline.png)
 
-Now lets do some initial particle tracing through the flow field using the stream tracer filter.
+### Tracing particles
+
+Now let's do some initial particle tracing through the flow field using the stream tracer filter.
 
 ▶ In the pipeline, select the __Delaunay3D__ filter and add a __Stream Tracer__ filter. You can find this under __Filters → Common → Stream Tracer__. *Do not press Apply just yet*.
 
@@ -94,7 +98,7 @@ Now lets do some initial particle tracing through the flow field using the strea
 
 This will give you a set of lines, each representing a trace of a particle as it follows the flow in the tornado. 
 
-▶ Note the small red 3D axis and large sphere at the bottom of the tornado: this is the seed center (12,12,0) and given radius around which the traced particles start. You could experiment with different locations of the seed point to see how this influences the streamlines.
+▶ Note the small red 3D axis and large sphere at the bottom of the tornado: this is the seed region centered at (12,12,0) with given radius from which the 100 traced particles start. You could experiment with different locations of the seed region to see how this influences the streamlines.
 
 !!! Hint "Accidental sphere changes / Resetting a filter to last executed values"
 
@@ -103,16 +107,20 @@ This will give you a set of lines, each representing a trace of a particle as it
     In most cases a widget can be hidden using a filter option, which prevents further interaction with it. Hiding the sphere here can be done by disabling the
     __Show Sphere__ option under Point Cloud Parameters.
 
+### Tubes
+
 ▶ To make the streamlines more visually appealing, we add another filter on the output of the StreamTracer filter, namely a __Tube__ filter (__Filters → Alphabetical → Tube__). In the Tube filter's __Properties__ tab, set the radius of the tubes to 0.1 and click __Apply__. Notice how this changes the appearance
 of the streamlines.
 
 ▶ At this point, we'd like to add the original data domain as an outline. For this, enable visibility of the __TableToPoints__ filter and switch its representation to __Outline__.
 
+▶ As you can see the stream lines do not reach the top of the domain. In the Stream Tracer filter we have set a **Maximum Streamline Length**, which limits the length of the stream lines. Try some different values for this setting.
+
 ▶ You can experiment with different colorings of the tubes, based on e.g. velocity, angular velocity or rotation. Use the coloring controls in the filters settings under __Coloring__ for this.
 
 ## Glyphs
 
-Finally, we'll add a different representation instead of the streamlines, called _glyphs_. Glyphs are simple and (usually) small 3D objects, like arrows or spheres. These glyphs get placed at each point position in a dataset to show a particular value. The glyphs are then colored, scaled and/or oriented based on scalar or vector values at the location. We'll use arrow glyphs to show the flow velocity magnitude and direction in the tornado.
+Finally, we'll add a different representation instead of the streamlines, called _glyphs_, which are used a lot for flow fields. Glyphs are simple and (usually) small 3D objects, like arrows or spheres. These glyphs get placed at each point position in a dataset to show a particular value. The glyphs are then colored, scaled and/or oriented based on scalar or vector values at the location. We'll use arrow glyphs here to show the flow velocity magnitude and direction in the tornado.
 
 ▶ Hide all filter output, except the __TableToPoints__ filter (the domain), by clicking the relevant eye icons. 
 
@@ -122,7 +130,7 @@ Finally, we'll add a different representation instead of the streamlines, called
 
 !!! Info "Point versus cell input"
 
-    Note that there is no need to base the Glyph filter on the Delaunay 3D output, as the Glyph filter works on 3D *points*, as in the original data set. This is unlike the Streamtracer filter needing *cells*, which we added using the Delaunay 3D filter.
+    Note that there is no need to base the Glyph filter on the Delaunay 3D output, as the Glyph filter works on 3D *points*, as present in the original data set. This is unlike the Streamtracer filter, which operates on *cells* (which we created by adding the Delaunay 3D filter).
 
     ParaView does provide generic `Point Data to Cell Data` and `Cell Data to Point Data` filters, to convert between the two using interpolation.
 
@@ -136,6 +144,6 @@ Let's try to improve the overall visualization, to make it easier to interpret.
 
 You might wonder about the the number of glyphs placed, compared to the 25,000 points in the dataset. There is currently quite a large number of glyphs, and perhaps still too many to be effective. This doesn't help in the overall visual interpretation of the data, but we do need to balance getting enough coverage of the full dataset.
 
-▶ The filter settings under __Masking__ provide different modes options for the number and distribution of the glyphs placed. For example, see what happens when using Glyph Mode `Every Nth point` when you show a glyph for every 10th or 11th point. Or use 500 glyphs uniformly distributed (and why that means you need choose these kinds of parameters with care).
+▶ The filter settings under __Masking__ provide different options for the number and distribution of the glyphs placed. For example, see what happens when using Glyph Mode `Every Nth point` when you show a glyph for every 10th or 11th point (the `Stride` value). Or use 500 glyphs uniformly distributed (and why that means you need choose these kinds of parameters with care).
 
-▶ A useful variant is to apply glyphs *to the output of the Stream Trace filter* (by creating a second Glyph filter). This is possible because the generated streamlines are themselves polygonal data, where each streamline consists of a Poly-Line cell that uses a set of 3D points. As a Glyph filter uses point positions to place glyphs we can place them for each streamline. Experiment with this, using different types of glyphs, like Sphere and Arrow. Also try coloring by IntegrationTime to verify the direction in which the streamlines where "grown".
+▶ A useful variant is to apply glyphs *to the output of the Stream Trace filter*, by creating a second Glyph filter. This is possible because the generated streamlines are themselves polygonal data, where each streamline consists of a Poly-Line cell that uses a set of 3D points. As a Glyph filter uses point positions to place glyphs we can place them for each streamline. Experiment with this, using different types of glyphs, like Sphere and Arrow. Also try coloring by IntegrationTime to verify the direction in which the streamlines where "grown".

@@ -23,7 +23,7 @@ change dynamically over time, showing us the growth of the coral over time.
 
 ![](images/time-manager.png)
 
-▶ Verify that this adds __Contour1__ to the timeline, directly under __Animations__ as a second "strip" over the full length of the time bar. The values at the far left and right edges of the strip are the isosurface values used at those time points (1280 and 37120, respectively). These values are based on the min/max values from the input dataset, which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__.
+▶ Verify that this adds __Contour1 - ContourValues__ to the timeline, directly under __Animations__ as a second "strip" over the full length of the time bar. The values at the far left and right edges of the strip are the isosurface values used at those time points (1280 and 37120, respectively). These values are based on the min/max values from the input dataset, which can you verify using the __Information__ tab of __ALT_PRPB001A.vtk__.
 
 ![](images/time-manager2.png)
 
@@ -37,7 +37,7 @@ change dynamically over time, showing us the growth of the coral over time.
 
 Since the coral is a three-dimensional structure, it is nice to look at all sides of the structure over time. To do this, we will add a camera path that orbits around the coral as it animates.
 
-▶ The coral grows in the -Y direction, which you can verify by looking at the small 3D axes in the lower-left of the 3D view. This is unfortunate, as by default the data is shown upside-down. We will set up a good view using the toolbar buttons for viewing directly along one of the coordinate axes. Press the __+Z button__ to look along the +Z direction, with +Y up, then press the __+90 button__ twice to rotate the view to -Y up.
+▶ The coral grows in the -Y direction, which you can verify by looking at the small 3D axes in the lower-left of the 3D view. This is unfortunate, as by default the data is shown upside-down (as you might have noticed). We will set up a good view using the toolbar buttons for viewing directly along one of the coordinate axes. Press the __+Z button__ to look along the +Z direction, with +Y up, then press the __+90 button__ twice to rotate the view to -Y up.
 
 ![](images/rotationbuttons.png)
 
@@ -45,9 +45,9 @@ Since the coral is a three-dimensional structure, it is nice to look at all side
 
 Next, we will add a circular camera motion, a so-called _orbit_.
 
-▶ In the Time Manager in the Animations row select __Camera__ from the left-most drop-down box, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. This will add a __Camera - RenderView1__ strip. If you play the animation you will see the scene rotates over time, however, *the data is shown upside down...*
+▶ In the Time Manager in the Animations row select __Camera__ from the left-most drop-down box, and __Follow Path__ in the dropdown right to it. Then create a camera animation strip by pressing the blue __+__ button. This will add a __Camera (Follow Path) - RenderView1__ strip. If you play the animation you will see the scene rotates over time, however, *the data is shown upside down...*
 
-So the default camera orbit needs some tweaking, as it is set up based on the current view. For example, the camera might be a bit too close to the coral object and we want to move it back a bit. 
+So the default camera orbit needs some tweaking, as it is set up based on the current view. For example, the camera might also be a bit too close to the coral object and we want to move it back a bit.
 
 ▶ Bring up the animation parameters by double-clicking on the Camera strip in the Time Manager, this will show the __Animation Keyframes__ dialog.
 
