@@ -12,7 +12,7 @@ ParaView comes with a Python 3.x layer that can be used for several different ta
 * Creating custom filters
 * Creating custom plots
 
-Obviously, Python scripting is an extensive and technically-oriented topic, and we won't go deep into the peculiarities of learning the Python API in ParaView. The best resources for that are the official tutorials, starting with the [Python & Batch: ParaView & Python chapter](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchParaViewAndPython.html). A dedicated set of ParaView Python documentation is available [here](https://kitware.github.io/paraview-docs/latest/python/index.html).
+Obviously, Python scripting is an extensive and technically-oriented topic, and we won't go deep into the peculiarities of learning the Python API in ParaView. The best resources for that are the official tutorials, starting with the [Python & Batch: ParaView & Python chapter](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchParaViewAndPython.html). A dedicated set of ParaView Python documentation is available [here](https://www.paraview.org/paraview-docs/nightly/python/).
 
 Below, we discuss the different possibilities listed above in more detail.
 
