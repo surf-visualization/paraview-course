@@ -3,6 +3,11 @@ hide:
     - navigation
 ---
 
+!!! Warning
+
+    This section is not up-to-date for ParaView 6.2.0. It also appears there are issues in that version with the rendering options
+    described here.
+
 # Appearance
 
 The default rendering method used in ParaView does not produce shadows, nor any other realistic lighting effects. In certain cases you might want to have an image that looks a bit nicer (for example, as cover image). So we'll look into a few ways of accomplishing more appealing images below.
