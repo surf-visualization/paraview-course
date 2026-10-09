@@ -60,11 +60,25 @@ To run Python scripts from the command-line ParaView provides two executables, `
 * `pvpython` allows interactive use, as well as batch execution of Python scripts.
 * `pvbatch` is very similar to `pvpython`, but it can only run scripts, there's no interactive prompt. However, it can be run under MPI to allow parallel processing of larger datasets, something that isn't possible with `pvpython`.
 
+!!! Tip "Offscreen rendering"
+
+    Both `pvpython` and `pvbatch` support a `--force-offscreen-rendering` option, which avoids creating windows when rendering images. Depending on the system configuration where you're running ParaView this might or might not work. 
+
 !!! info "Remote and parallel usage"
 
     There's another [difference](https://docs.paraview.org/en/latest/ReferenceManual/parallelDataVisualization.html) between `pvpython` and `pvbatch` in that `pvpython` can be used to connect to a running ParaView server, thereby allowing remote (client-server) usage. In contrast, `pvbatch` always runs locally on the system and cannot connect as a client to a ParaView server.
 
-`pvpython` contains GUI-related components, so it might show windows when executing certain commands (such as making a screenshot).
+To summarize the differences:
+
+| | `pvpython` | `pvbatch` |
+|-|------------|-----------|
+| Interactive prompt | yes | no |
+| Execute scripts | yes | yes |
+| Parallel execution (MPI) | no | yes |
+| Connect to ParaView server | yes | no |
+| Supports off-screen rendering | yes | yes |
+
+### Example
 
 ```py
 $ pvpython
@@ -106,10 +120,6 @@ $ pvpython wavelet-contour.py
 [openvkl] CPU device instantiated with width: 8, ISA: AVX2
 # Briefly shows windows, which closes when the script is done
 ```
-
-!!! Tip "Offscreen rendering"
-
-    Both `pvpython` and `pvbatch` support a `--force-offscreen-rendering` option, which avoids creating windows when rendering images. Depending on the system configuration where you're running ParaView this might or might not work. 
 
 ## GUI support
 
