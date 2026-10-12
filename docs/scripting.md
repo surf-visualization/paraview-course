@@ -3,7 +3,7 @@ hide:
     - navigation
 ---
 
-# Scripting
+# Scripting & state
 
 ParaView comes with a Python 3.x layer that can be used for several different tasks:
 
@@ -20,11 +20,11 @@ Below, we discuss the different possibilities listed above in more detail.
 
 The easiest way to get started with Python scripting from the ParaView GUI is to use the Trace feature:
 
-* `Tools > Start Trace`, adjust options in the Trace Options dialog as needed (usually the defaults are fine), press OK.
-* Perform actions within the GUI (for example, load a data file, add a Contour filter, press Apply)
-* `Tools > Stop Trace`
+1. `Tools > Start Trace`, adjust options in the Trace Options dialog as needed (usually the defaults are fine), press OK.
+2. Perform actions within the GUI (for example, load a data file, add a Contour filter, press Apply, save a screenshot to file)
+3. `Tools > Stop Trace`
 
-The Python Script Editor window will pop up and will show the Python code representing the actions you performed. The script will usually contain quite a few more things than you did yourself in the GUI, as it records low-level implicit actions as well, for example related to rendering and updating the views. 
+The Python Script Editor window will now pop up and will show the Python code representing the actions you performed. The script will usually contain quite a few more things than you did yourself in the GUI, as it records low-level implicit actions as well, for example related to rendering and updating the views. 
 
 In principle, the generated script is self-contained and can be run later using the methods described below, for example from the command-line. Or you can use a Python trace as a basis for writing your own Python code for creating automated ParaView workflows.
 
@@ -38,26 +38,26 @@ The written script usually contains quite a bit of code, as it represent not jus
 
 A Python state file (and trace as well) can later be re-executed using `File > Load State`, picking `Python state file` as file type. Note that in this case the current state is *not* cleared, so the script will add to the current state.
 
-Also note that no data used by the filter pipeline is stored in the state, only the pipeline setup (i.e. filter types, parameters and connections). So when re-executing the state the data files referenced by pipeline filters need to be available for reading.
+Also note that **no data processed by the filter pipeline is stored in the state**, only the pipeline setup itself (i.e. filter types, parameters and connections). So when re-executing the state any data files referenced by pipeline filters need to be available for reading.
 
 !!! Tip "ParaView State Files (.psvm)"
 
-    Using Python is one method for saving ParaView state, but the default is to use an XML-based format, with extension .pvsm. This file can also be written using `File > Save State`, file type `ParaView state file`.
+    Using Python is one method for saving ParaView state, but the default is to use an XML-based format, with extension .pvsm. This file can also be written using `File > Save State`, file type `ParaView state file`. Loading state from a .pvsm file is done with `File > Load State`.
 
 !!! Tip "Saving (XML) state in a screenshot file"
 
-    An interesting feature that was added in ParaView 5.12 is to save the current state as XML metadata (so not as Python) in a screenshot PNG file. This only works for screenshots in PNG file format.
+    An interesting feature that was added in ParaView 5.12 is to save the current state as XML metadata (so not as Python) in a screenshot file. This is only available for screenshots saved to PNG file format.
 
     Use `File > Save Screenshot`, pick PNG as image type, enter the file name, click OK and then in the Save Screenshot Options dialog enable `Embed ParaView State`. The resulting PNG file can then later be loaded with `File > Load State`.
 
-    The reason for mentioning such non-Python state here is that you can save such screenshots from Python by passing `EmbedParaViewState=1` to the `SaveScreenshot()` function, which might be interesting for scripts doing batch-oriented rendering.
+    The reason for mentioning such non-Python state here is that you can save such screenshots from Python by passing `EmbedParaViewState=1` to the `SaveScreenshot()` function, which might be interesting for scripts doing batch-oriented rendering. The screenshot image can contain a visualization for a publication, while allowing reproduction of the pipeline setup that the produced the image.
 
 
 ## Command-line execution
 
 To run Python scripts from the command-line ParaView provides two executables, `pvpython` and `pvbatch`:
 
-* `pvpython` allows interactive use, as well as batch execution of Python scripts.
+* `pvpython` allows interactive use, as well as batch execution of Python scripts. This is essentially a ParaView-specific version of the `python` command.
 * `pvbatch` is very similar to `pvpython`, but it can only run scripts, there's no interactive prompt. However, it can be run under MPI to allow parallel processing of larger datasets, something that isn't possible with `pvpython`.
 
 !!! Tip "Offscreen rendering"
@@ -82,18 +82,16 @@ To summarize the differences:
 
 ```py
 $ pvpython
-Python 3.11.8 (main, Feb 12 2024, 14:50:05) [GCC 13.2.1 20230801] on linux
+Python 3.12.14 (main, Sep 30 2026, 00:00:17) [GCC 10.3.1 20210422 (Red Hat 10.3.1-1)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from paraview.simple import *
 >>> wavelet = Wavelet()
 >>> Show(wavelet)
-[openvkl] application requested ISPC device width 8via device name cpu_8
-[openvkl] CPU device instantiated with width: 8, ISA: AVX2
-<paraview.servermanager.UniformGridRepresentation object at 0x71244c38f8d0>
+<paraview.servermanager.UniformGridRepresentation object at 0x7fdb445fde50>
 >>> contour = Contour(Input=wavelet)
 >>> contour.Isosurfaces = [200.0]
 >>> Show(contour)
-<paraview.servermanager.GeometryRepresentation object at 0x71244c3f8550>
+<paraview.servermanager.GeometryRepresentation object at 0x7fdb3dbf6b70>
 >>> SaveScreenshot("iso.png")
 # Shows window, which stays open
 True
@@ -116,8 +114,6 @@ Show(contour)
 SaveScreenshot("iso.png")
 
 $ pvpython wavelet-contour.py 
-[openvkl] application requested ISPC device width 8via device name cpu_8
-[openvkl] CPU device instantiated with width: 8, ISA: AVX2
 # Briefly shows windows, which closes when the script is done
 ```
 
