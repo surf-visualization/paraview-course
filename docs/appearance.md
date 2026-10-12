@@ -5,7 +5,7 @@ hide:
 
 !!! Warning
 
-    This section is not up-to-date for ParaView 6.2.0. It also appears there are issues in that version with the rendering options
+    This section is not up-to-date for ParaView 6.2.0. It also appears there are [issues](https://discourse.paraview.org/t/paraview-6-2-0-raytraced-rendering-status/17762) in that version with the rendering options
     described here.
 
 # Appearance
