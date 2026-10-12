@@ -8,19 +8,19 @@ The advantage of CSV is that it is a simple and human-readable format, and can b
 
 ## Importing and preparing the data
 
-The data contained in the CSV file is not automatically identified and understood correctly by ParaView, it simply does not have enough information for that. Therefore when we open a CSV file, we first have to apply some filters to map the data to the correct data arrays that we can operate on. After this is done, we can use a stream-tracer filter on it to get a good impression of the wind flow in this simulation.
+The data contained in the CSV file is not automatically identified and understood correctly by ParaView, it simply does not have enough information for that. Therefore when we open a CSV file, we first have to apply some filters to map the data to the correct data arrays that we can operate on. After this is done, we can use a stream-tracer filter on it to get a good impression of the air flow in this simulation.
 
 ▶ The first thing to do is to create a new session, and start with a clean view. For this, use the disconnect button in the toolbar and pressing __Yes__ (or the __File → Disconnect__ menu option). This will completely clean your current pipeline, so you can start the next exercise:
 
 ![](images/disconnect.png)
 
-▶ Open the __wervel.csv__ file and click __Apply__. ParaView will ask which reader to use, pick __CSV Reader__ and click __Ok__. Next, use __Apply__ to actually load the data. A new view pane with a table representation of the data will get added next to existing the 3D view. The table is similar to an Excel sheet:
+▶ Open the __wervel.csv__ file and click __Apply__. ParaView will ask which reader to use, pick __CSV Reader__ and click __Ok__. Next, use __Apply__ to actually load the data. A new view pane with a table representation of the data will get added next to existing the 3D view. The table is similar to a spreadsheet:
 
 ![](images/tornado-spreadsheet-view.png)
 
-If you would open the CSV file in a text editor you would see the file contains 7 values per line, with each line representing one grid point. 
+If you would open the CSV file in a text editor you would see the file contains 7 values per line, with each line representing one grid point. ParaView turns this into a list of rows, each with 8 columns holding values. Note that ParaView adds the `Row ID` column itself, it does not come from the file.
 
-These values are:
+The column values are:
 
 * A unique identifier per point, __i__
 * __x__, __y__, and __z__ values defining a location on a 3D cartesian grid.
@@ -30,7 +30,7 @@ These values are:
 
 ParaView does not know by itself how these individual variables relate to the points and cells in its data model, so we have to provide that mapping manually.
 
-▶ The first step is to add a __TableToPoints__ filter to our data source. This filter creates a 3D point for each row in the table, based on a set of table values you choose. You can find this filter under __Filters → Alphabetical → TableToPoints__. Set the __X__, __Y__ and __Z__ columns correctly to the table columns representation point position, check __Keep All Data Arrays__ and hit __Apply__.
+▶ The first step is to add a __TableToPoints__ filter to our data source. This filter creates a 3D point for each row in the table, based on a set of table values you choose. You can find this filter under __Filters → Alphabetical → TableToPoints__. Set the __X__, __Y__ and __Z__ columns correctly to the table columns representation 3D point position, check __Keep All Data Arrays__ and hit __Apply__.
 
 ![](images/tabletopoints.png)
 
@@ -56,29 +56,31 @@ Next, we need to combine the three separate scalar values __vx__, __vy__ and __v
 
     ![](images/incorrect-expression.png)
 
-    This will cause properties to get filtered on the entered text (which there aren't), hiding them all.
+    This will cause properties to get filtered to those matching the entered text (and there aren't any), hiding them all.
 
 You will probably have understood the name __iHat__ to represent the vector __î__, i.e. (1, 0, 0). Using the Calculator filter fairly complex expressions can be used to augment existing datasets with new and useful values, both scalars and vectors.
 
-▶ Select the Calculator filter in the pipeline and add *another* Calculator filter, for creating an array __VelocityMag__ and expression `mag(Velocity)`.
+![](images/wervel-pipeline1.png)
 
-![](images/2ndcalculator.png)
+The pipeline we built up to this point, shown above, creates a Polygonal Mesh dataset which contains only points: the input point positions with their respective 3D velocity vectors. You can see this on the __Information__ tab for the Calculator filter in the pipeline browser (as shown below). Note that there *is* a single cell, but it holds 25,000 points. If you were to check the spreadsheet view you would see that that one cell is of type `Polyvertex`, meaning it only holds 3D points (but not 3D cell regions, or surfaces). 
 
-▶ The pipeline we built up to this point, shown above, creates a Polygonal Mesh dataset which contains only points: the input point positions with their respective 3D velocity vectors. You can see this on the __Information__ tab of the Calculator filter in the pipeline browser. Note that there's only 1 cell, and it contains all the 25,000 points. We also added two quantities derived from the input data, a velocity vector and its magnitude.
+![](images/wervel-calculator-information.png)
+
+We also added a quantity derived from the input data, i.e the `Velocity` vector. Note that its X and Y components cover a fairly even positive and negative range, while for the Z component the value range is mostly positive. The latter gives some indication of how the 3D velocity vectors in the field are oriented (and what this means for air flow in the tornado).  
 
 ## Visualizing the flow field
 
-Now that our data is converted from the CSV input to the ParaView data model we can start looking at our flow field. To do this, we want to use the _stream-tracer filter_. With this filter we simulate injecting particles in our flow field at specific locations. By letting these particles follow the flow, based on the velocity vectors in the grid, and tracing them over time we get an impression of the fluid flow through the model. 
+Now that our data is converted from the CSV input to an adequata ParaView dataset we can start looking at our flow field. To do this, we want to use the _stream-tracer filter_. With this filter we simulate injecting particles in our flow field at specific locations. By letting these particles follow the flow based on the velocity vectors in the grid, and tracing them using integration, we get an impression of the fluid flow through the dataset. 
 
-The stream-tracer filter is based on tracing a virtual particle through the _cells_ of a dataset, i.e. regions of model space defined using 3D points. The flow direction within a cell, as indicated by the velocity vector value, is then integrated by the filter to determine a particle's position over time, thereby creating a trace of the particle through the dataset. 
+However, the stream-tracer filter is based on tracing a virtual particle through the _cells_ of a dataset, i.e. small sub-regions of the model space. The flow direction within a cell, as indicated by the velocity vector value, is then integrated by the filter to determine a particle's position over time, thereby creating a trace of the particle through the dataset. 
 
-But as noted above, *there's currently only a single cell in our dataset holding all the points*, which provides no meaningful way to trace particles. So we need to divide up the dataset domain into small cells. Furthermore, the flow vector values are currently associated only with the _points_ of the dataset, while we need those values for each _cell_ for the stream-tracer to work.
+But as noted above, *there's currently only a single cell in our dataset holding only 3D points*, which provides no meaningful way to trace particles. So we need to divide up the dataset domain into smaller regions.
 
-We can fix these two issues by applying a 3D Delaunay triangulation. This creates cells from the dataset based on the existing points. The cells created are small and detailed enough so that our Stream Tracer filter can reasonably work. The filter also adds a new flow vector value for each created cell, based on interpolating the existing per-point values of its corners.
+We can fix this applying a **3D Delaunay triangulation**. This creates cells on the dataset spanning the existing 3D point locations. The cells created are small regions of 3D space, and are detailed enough so that our Stream Tracer filter can reasonably work and provide useful output.
 
-▶ Select the __Calculator2__ filter and add a __Delaunay 3D__ filter using __Filters → Alphabetical → Delaunay3D__ and click __Apply__. It might take a few seconds to a minute for the computation to complete.
+▶ Select the __Calculator1__ filter and add a __Delaunay 3D__ filter using __Filters → Miscellaneous → Delaunay3D__ and click __Apply__. It might take a few seconds for the computation to complete.
 
-The representation of the data in the 3D view will now have changed to a block, instead of points, indicating that there are now cells which take up regions of 3D space.
+The representation of the data in the 3D view will now have changed to a block, instead of points, indicating that there are now cells which take up regions of 3D space. If you were to check the spreadsheet view you would see that all cells produced by the Delaunay 3D filter are of the type Tetrahedron, a four-sided geometric shape specified by four 3D points. 
 
 ▶ Check the __Information__ tab for the __Delaunay 3D__ filter and switch to __Surface With Edges__ representation to see how the data has changed, in terms of type, cells and points. You could also clip away part of the dataset with the __Clip__ filter to look at the cell structure inside of the dataset.
 
@@ -98,7 +100,7 @@ Now let's do some initial particle tracing through the flow field using the stre
 
 This will give you a set of lines, each representing a trace of a particle as it follows the flow in the tornado. 
 
-▶ Note the small red 3D axis and large sphere at the bottom of the tornado: this is the seed region centered at (12,12,0) with given radius from which the 100 traced particles start. You could experiment with different locations of the seed region to see how this influences the streamlines.
+▶ Note the small red 3D axis and large sphere at the bottom of the tornado: this is the seed region centered at (12,12,1) with given radius 12 from which the 100 traced particles start. You could experiment with different locations of the seed region to see how this influences the streamlines.
 
 !!! Hint "Accidental sphere changes / Resetting a filter to last executed values"
 
@@ -107,16 +109,22 @@ This will give you a set of lines, each representing a trace of a particle as it
     In most cases a widget can be hidden using a filter option, which prevents further interaction with it. Hiding the sphere here can be done by disabling the
     __Show Sphere__ option under Point Cloud Parameters.
 
-### Tubes
+### Tubes, and tweaking the streamlines
 
-▶ To make the streamlines more visually appealing, we add another filter on the output of the StreamTracer filter, namely a __Tube__ filter (__Filters → Alphabetical → Tube__). In the Tube filter's __Properties__ tab, set the radius of the tubes to 0.1 and click __Apply__. Notice how this changes the appearance
+▶ To make the streamlines more visually appealing, we add another filter on the output of the StreamTracer filter, namely a __Tube__ filter (__Filters → Miscellaneous → Tube__). In the Tube filter's __Properties__ tab, set the radius of the tubes to 0.1 and click __Apply__. Notice how this changes the appearance
 of the streamlines.
 
 ▶ At this point, we'd like to add the original data domain as an outline. For this, enable visibility of the __TableToPoints__ filter and switch its representation to __Outline__.
 
-▶ As you can see the stream lines do not reach the top of the domain. In the Stream Tracer filter we have set a **Maximum Streamline Length**, which limits the length of the stream lines. Try some different values for this setting.
+▶ As you can see the stream lines do not reach the top of the domain (while we would expect the upward draft within the tornado to go high). In the Stream Tracer filter we have set a **Maximum Streamline Length**, which limits the length of the stream lines. Try some different values for this setting.
+
+▶ The stream trace filter currently integrates the path of the virtual particles in the forward direction only, as option **Integration Direction** is set to `FORWARD`. Another tweak we can make is to also allow the stream trace filter to integrate backwards, by setting the option to `BOTH`. By also following the velocity vectors in the opposite direction it adds parts of the streamlines that can reach the seed region (instead of only originating from it).
 
 ▶ You can experiment with different colorings of the tubes, based on e.g. velocity, angular velocity or rotation. Use the coloring controls in the filters settings under __Coloring__ for this.
+
+Finally, here's an example of visualizing the tornado dataset, based on the options given above:
+
+![](images/tornado.png){: width=400px }
 
 ## Glyphs
 
@@ -134,7 +142,7 @@ Finally, we'll add a different representation instead of the streamlines, called
 
     ParaView does provide generic `Point Data to Cell Data` and `Cell Data to Point Data` filters, to convert between the two using interpolation.
 
-You should now see a large number of arrows nicely distributed over the tornado dataset, indicating the direction of wind flow. As we have set the Scale Mode to Off all arrows are the same size, obscuring the insides and giving less of a visual clue to wind speed.
+You should now see a large number of arrows nicely distributed over the tornado dataset, indicating the direction of air flow. As we have set the Scale Mode to Off all arrows are the same size, obscuring the insides and giving less of a visual clue to air speed.
 
 Let's try to improve the overall visualization, to make it easier to interpret.
 

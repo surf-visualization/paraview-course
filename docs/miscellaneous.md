@@ -34,7 +34,7 @@ Below, we describe a few of these.
 
 * The **SpreadSheet View** shows underlying point and cell output data (and other types) of a single filter. This can be really useful to understand the underlying data values, to see if your import worked correctly, if a Python script generates correct values, etc.
 
-    Note that the data shown depends on the filter chosen under **`Showing`** in the top-left, *not* the currently selected filter in the pipeline.
+    Note that the data shown **depends on the filter chosen under `Showing` in the top-left**, *not* the currently selected filter in the pipeline browser.
 
     ![](./images/spreadsheet-view.png){: width=500px }
 
@@ -56,16 +56,26 @@ When using ParaView's client-server mode this will also list the memory usage ea
 
 ### Statistics inspector
 
-Enabling `View > Statistics inspector` will add a panel showing high-level information on all different filters in the pipeline. This includes geometry size for rendering, which is something not shown in the regular Information panel.
+Enabling `View > Statistics inspector` will add a panel showing high-level information on all different filters in the pipeline. This includes geometry size for rendering, which is something not shown in the regular Information panel. Note that **Geometry Size** will be unavailable if the selected filter is not enabled to be visible with the eye icon.
 
 ![](./images/statistics-inspector.png)
 
 
 ## Tips
 
+### Hidden (advanced) filter properties
+
+Most filters have quite a lot of properties. **Some of them are even hidden by default**, and will only appear by enabling the advanced property toggle ![](./images/wheel.png){.iconimg}. 
+
+### Searching and finding (hidden) properties
+
+![](./images/properties-header.png)
+
+Properties can be filtered on (partial) names using the `Search ...` entry, and the resulting list will show all matching properties. The results will including hidden properties.
+
 ### Quick filter search
 
-With **`Ctrl+Space`** you can bring up the filter quick search menu:
+With **`Ctrl+Space`** (or **`Option+Space`** on a Mac) you can bring up the filter quick search menu:
 
 ![](./images/filter-search.png)
 
@@ -77,14 +87,6 @@ Pressing the **`?`** button at the top of the current filter's properties will s
 
 ![](./images/filter-help.jpg)
 
-### Searching and finding (hidden) properties
-
-Most filters have quite a lot of properties. **Some of them are even hidden by default**, and will only get listed by enabling the advanced property toggle ![](./images/wheel.png){.iconimg}. 
-
-![](./images/properties-header.png)
-
-Luckily, properties can be filtered on (partial) names using the `Search ...` entry, and the resulting list will show all matching properties, including hidden ones.
-
 ### Rename a filter
 
 You can rename a filter by selecting it and then double-clicking it in the pipeline browser (or right-click and then `Rename`).
@@ -93,9 +95,11 @@ You can rename a filter by selecting it and then double-clicking it in the pipel
 
 ### Changing a filter's input
 
+Sometimes you might have connected a filter to the wrong upstream filter, or want to change one or more connected filters to operate on different input. 
+
 You can change the input of a filter in the pipeline by right-clicking on it and picking `Change input`. This will bring up a dialog for selecting the new upstream filter. 
 
-Below is an example of changing the CSV source of a pipeline to an updated file. This can be useful if during loading of a state file one or more input files can't be found (e.g. due to a changed path).
+Below is an example of changing the CSV source of the **TableToPoints** filter to a different file. This can be useful if during loading of a state file one or more input files can't be found (e.g. due to a changed path).
 
 ![](./images/change-input.png)
 
@@ -103,7 +107,7 @@ After the new input is set the pipeline will re-execute to make itself up-to-dat
 
 ### Linking cameras between views
 
-If you have split the main 3D view into two (more more) views you can easily link the cameras between the views: right-click on a view, click `Link camera...` and then click on the view whose camera you want to link to. Now, the view cameras will stay the same when you interact with either view.
+If you have split the main 3D view into two (or more) views you can easily link the cameras between the views: right-click on a view, click `Link camera...` and then click on the view whose camera you want to link to. Now, the view cameras will stay the same when you interact with either view.
 
 ### Docking the Output Messages window
 
